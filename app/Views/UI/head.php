@@ -45,4 +45,31 @@
       }
     ?>
   </head>
-  <body class="<?= session()->has("logged_in") && session()->get("logged_in") ? 'hold-transition sidebar-mini layout-fixed ' . (session()->has("sidebar") && session()->get("sidebar") == 'true' ? '' : 'sidebar-collapse') : ''?>">
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-section">
+          <img src="<?= base_url('assets/img/logo-negro.png') ?>" alt="Logo" class="logo">
+          <div class="store-info">
+            <h1 class="store-name">Shop Inventory</h1>
+            <p class="verified-store">
+              <i class="fas fa-check-circle"></i> Tienda Verificada
+            </p>
+          </div>
+        </div>
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+      <div class="banner-content">
+        <h2 class="banner-title">Todo lo que crees, lo creas!</h2>
+        <div class="banner-mascot">
+          <i class="fas fa-cat"></i>
+        </div>
+      </div>
+    </section>
