@@ -64,6 +64,7 @@ abstract class BaseController extends Controller
 		$this->LAlertify();
 		$this->LFontAwesome();
 		$this->LBootstrap();
+		$this->LSwiper();
 		$this->LGlobal();
 	}
 
@@ -92,6 +93,17 @@ abstract class BaseController extends Controller
 			'alertifyjs/alertify.min.js'
 		];
 	}
+
+	public function LSwiper()
+	{
+		$this->content['css_lib'][] = [
+			'swiper/css/swiper-bundle.min.css'
+		];
+		$this->content['js_lib'][] = [
+		  'swiper/js/swiper-bundle.min.js'
+		];
+	}
+
 
 	//Librerias personalizadas en el vendor que estan en el controlador de Libraries
 	public function LBootstrap()

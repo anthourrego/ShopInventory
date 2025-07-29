@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9de65f254532b0878a97d2f3cc588043",
+    "content-hash": "5ba7bd77e986e7391bfdb6b2e3ae1d6f",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -285,6 +285,58 @@
                 }
             ],
             "time": "2025-05-06T19:29:36+00:00"
+        },
+        {
+            "name": "nolimits4web/swiper",
+            "version": "v4.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nolimits4web/swiper.git",
+                "reference": "2b05891cdc2aa427f5697fa747680d1280dc4379"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/2b05891cdc2aa427f5697fa747680d1280dc4379",
+                "reference": "2b05891cdc2aa427f5697fa747680d1280dc4379",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Kharalmpidi",
+                    "email": "nolimits4web@gmail.com",
+                    "homepage": "https://idangero.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Most modern mobile touch slider and framework with hardware accelerated transitions",
+            "homepage": "http://www.idangero.us/swiper/",
+            "keywords": [
+                "app",
+                "carousel",
+                "cordova",
+                "framework",
+                "framework7",
+                "gallery",
+                "ios",
+                "mobile",
+                "phonegap",
+                "plugin",
+                "slider",
+                "swipe",
+                "swiper",
+                "touch"
+            ],
+            "support": {
+                "docs": "http://idangero.us/swiper/api/",
+                "issues": "https://github.com/nolimits4web/swiper/issues",
+                "source": "https://github.com/nolimits4web/swiper.git"
+            },
+            "time": "2019-10-16T11:51:47+00:00"
         },
         {
             "name": "psr/log",

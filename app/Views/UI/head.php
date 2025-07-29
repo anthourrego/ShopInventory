@@ -45,7 +45,7 @@
       }
     ?>
   </head>
-  <body>
+  <body class="container">
     <!-- Header -->
     <header class="header">
       <div class="header-content">
@@ -65,11 +65,47 @@
     </header>
 
     <!-- Banner -->
-    <section class="banner">
+    <!-- Categories with Swiper -->
+    <section class="categories">
+      <div class="swiper category-swiper">
+          <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                  <div class="category-item active">
+                      <div class="category-circle">
+                          <img src="<?= base_url('assets/images/bodys.jpg') ?>" alt="Bodys">
+                      </div>
+                      <span class="category-name">Bodys</span>
+                  </div>
+              </div>
+              <div class="swiper-slide">
+                  <div class="category-item">
+                      <div class="category-circle">
+                          <i class="fas fa-tshirt"></i>
+                      </div>
+                      <span class="category-name">Crop Tops</span>
+                  </div>
+              </div>
+              <div class="swiper-slide">
+                  <div class="category-item">
+                      <div class="category-circle">
+                          <i class="fas fa-female"></i>
+                      </div>
+                      <span class="category-name">Sets con liguero</span>
+                  </div>
+              </div>
+              <!-- Más categorías -->
+          </div>
+          
+          <!-- Navegación -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+    <!-- <section class="banner">
       <div class="banner-content">
         <h2 class="banner-title">Todo lo que crees, lo creas!</h2>
         <div class="banner-mascot">
           <i class="fas fa-cat"></i>
         </div>
       </div>
-    </section>
+    </section> -->
