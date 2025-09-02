@@ -1,0 +1,1322 @@
+[
+	{
+		"id": 111,
+		"name": "Body manga sisa",
+		"price": 92000,
+		"category": "Ropa deportiva",
+		"description": "Body deportivo manga sisa de alta calidad, perfecto para entrenamientos intensos. Fabricado con tela transpirable que se adapta al cuerpo proporcionando comodidad y libertad de movimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 112,
+		"name": "Body manga larga",
+		"price": 91000,
+		"category": "Ropa deportiva",
+		"description": "Body deportivo de manga larga ideal para entrenamientos en clima frío. Confeccionado con materiales de alta tecnología que mantienen la temperatura corporal mientras permiten la transpiración.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 114,
+		"name": "Leggins clasicos",
+		"price": 70000,
+		"category": "Ropa deportiva",
+		"description": "Leggins clásicos de compresión media, perfectos para cualquier actividad física. Diseño versátil que se adapta a diferentes tipos de entrenamiento proporcionando soporte y comodidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 115,
+		"name": "Tops basicos",
+		"price": 45000,
+		"category": "Ropa deportiva",
+		"description": "Top básico deportivo esencial para tu guardarropa fitness. Diseño simple y funcional con tela de secado rápido, ideal para entrenamientos diarios y actividades casuales.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 116,
+		"name": "Enterizo doble push",
+		"price": 105000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo con tecnología doble push up que realza y moldea la figura. Perfecto para entrenamientos que requieren flexibilidad y un ajuste ceñido que favorece la silueta.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 117,
+		"name": "Enterizo corto tiras",
+		"price": 84000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo corto con diseño de tiras cruzadas que brindan soporte adicional. Ideal para entrenamientos de alta intensidad, yoga y pilates. Combina estilo y funcionalidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 119,
+		"name": "Enterizo largo",
+		"price": 99000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo largo de cobertura completa, perfecto para entrenamientos completos. Diseñado con tela de compresión que moldea la figura y proporciona soporte durante la actividad física.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 120,
+		"name": "Enterizo corto doble push",
+		"price": 91000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo corto con tecnología doble push up que realza y define la figura. Perfecto para entrenamientos intensos donde necesitas comodidad y un look favorecedor.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 121,
+		"name": "Enterizo bota ancha",
+		"price": 126000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo con diseño de bota ancha que combina comodidad y estilo. Ideal para entrenamientos ligeros, yoga y actividades de relajación. Confeccionado en tela suave y flexible.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 124,
+		"name": "Enterizo falda",
+		"price": 82000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo con falda integrada que combina feminidad y funcionalidad deportiva. Perfecto para deportes como tenis, padel o entrenamientos donde buscas estilo y comodidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 125,
+		"name": "Conjunto alo blusa y pantalón bota ancha",
+		"price": 155000,
+		"category": "Ropa deportiva",
+		"description": "Conjunto elegante de dos piezas con blusa y pantalón bota ancha estilo alo. Perfecto para yoga, pilates y entrenamientos de baja intensidad. Combina comodidad suprema con estilo moderno.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 126,
+		"name": "Enterizo  alo bota ancha",
+		"price": 147000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo estilo alo con corte bota ancha que proporciona máxima comodidad y libertad de movimiento. Ideal para sesiones de yoga, meditación y entrenamientos relajantes.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 127,
+		"name": "Enterizo alo corto",
+		"price": 112000,
+		"category": "Ropa deportiva",
+		"description": "Enterizo corto estilo alo confeccionado en tela ultra suave. Diseño minimalista perfecto para entrenamientos ligeros, yoga y actividades de bienestar.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 128,
+		"name": "Conjunto alo top y leggins",
+		"price": 155000,
+		"category": "Ropa deportiva",
+		"description": "Conjunto completo alo de top y leggins matching. Fabricado en materiales premium que brindan comodidad excepcional para yoga, pilates y entrenamientos de flexibilidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 129,
+		"name": "Conjunto alo top y short",
+		"price": 133000,
+		"category": "Ropa deportiva",
+		"description": "Conjunto alo de top y short coordinados, ideal para clima cálido. Perfecto para entrenamientos al aire libre, yoga caliente y actividades de verano.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 130,
+		"name": "Falda short alo",
+		"price": 79000,
+		"category": "Ropa deportiva",
+		"description": "Falda short estilo alo que combina la comodidad de un short con la feminidad de una falda. Ideal para tenis, padel y entrenamientos donde buscas libertad de movimiento con estilo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 131,
+		"name": "Conjunto alo top y falda short",
+		"price": 119000,
+		"category": "Ropa deportiva",
+		"description": "Conjunto coordinado alo de top y falda short. Perfecto para deportes de raqueta, entrenamientos ligeros y actividades donde quieres lucir femenina y deportiva.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 134,
+		"name": "Camiseta quick dry",
+		"price": 42000,
+		"category": "Ropa deportiva",
+		"description": "Camiseta con tecnología quick dry que acelera el proceso de secado. Ideal para entrenamientos intensos, running y actividades donde la transpiración es alta.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 135,
+		"name": "Camiseta cool dry",
+		"price": 35000,
+		"category": "Ropa deportiva",
+		"description": "Camiseta con tecnología cool dry que mantiene la frescura durante el ejercicio. Perfecta para entrenamientos en clima cálido y actividades de alta intensidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 137,
+		"name": "Camiseta compresión manga corta",
+		"price": 28000,
+		"category": "Ropa deportiva",
+		"description": "Camiseta de compresión manga corta que mejora el flujo sanguíneo y reduce la fatiga muscular. Ideal como primera capa para entrenamientos de fuerza y resistencia.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 139,
+		"name": "Medias tobilletas",
+		"price": 14000,
+		"category": "Ropa deportiva",
+		"description": "Medias tobilleras deportivas con tecnología anti-humedad. Diseñadas para brindar comodidad y protección durante entrenamientos, con refuerzo en talón y puntera.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 140,
+		"name": "Falda short tradicional",
+		"price": 33000,
+		"category": "Ropa deportiva",
+		"description": "Falda short de diseño tradicional, cómoda y versátil. Perfecta para deportes como tenis, padel o entrenamientos ligeros donde buscas comodidad y movimiento libre.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 141,
+		"name": "Extra corto push",
+		"price": 35000,
+		"category": "Ropa deportiva",
+		"description": "Short extra corto con tecnología push up que realza y moldea la figura. Ideal para entrenamientos donde quieres sentirte segura y favorecida.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 142,
+		"name": "Short running",
+		"price": 51000,
+		"category": "Ropa deportiva",
+		"description": "Short especializado para running con diseño aerodinámico y costuras planas. Incluye bolsillo interno para llaves y gel, perfecto para corredores exigentes.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 143,
+		"name": "Falda short ivanna",
+		"price": 48000,
+		"category": "Ropa deportiva",
+		"description": "Falda short modelo Ivanna con diseño elegante y funcional. Combina estilo y practicidad, ideal para deportes de raqueta y entrenamientos donde el estilo importa.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 144,
+		"name": "Top copa microfibra",
+		"price": 20000,
+		"category": "Ropa deportiva",
+		"description": "Top deportivo con copa de microfibra que brinda soporte y comodidad. Diseño básico y funcional, perfecto para entrenamientos de baja a media intensidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 1,
+		"name": "CAMISETA QUICK DRY M3",
+		"price": 50000,
+		"category": "Sin categoria",
+		"description": "Camiseta deportiva Quick Dry M3 con tecnología de secado rápido. Diseñada para deportistas que buscan comodidad y rendimiento en cada entrenamiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 2,
+		"name": "PANTALONETA JAMES",
+		"price": 45000,
+		"category": "Sin categoria",
+		"description": "Pantaloneta deportiva James de corte clásico, ideal para entrenamientos y actividades deportivas. Confeccionada en materiales transpirables y duraderos.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 3,
+		"name": "SHORT - LICRA",
+		"price": 60000,
+		"category": "Sin categoria",
+		"description": "Short de licra de compresión que brinda soporte muscular y mejora el rendimiento. Perfecto para entrenamientos de alta intensidad y deportes que requieren flexibilidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 7,
+		"name": "CHAQUETA VELOX",
+		"price": 100000,
+		"category": "Sin categoria",
+		"description": "Chaqueta deportiva Velox diseñada para entrenamiento en clima frío. Fabricada con materiales térmicos que mantienen la temperatura corporal durante el ejercicio.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 8,
+		"name": "BUZO ROLLING PRO",
+		"price": 50000,
+		"category": "Sin categoria",
+		"description": "Buzo Rolling Pro de alta calidad para entrenamientos intensos. Diseño ergonómico que permite libertad de movimiento sin comprometer la durabilidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 9,
+		"name": "BUZO ROLLING",
+		"price": 45000,
+		"category": "Sin categoria",
+		"description": "Buzo Rolling clásico para entrenamientos diarios. Confeccionado en materiales resistentes que mantienen su forma y color lavado tras lavado.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 10,
+		"name": "ENTERIZO LARGO EPIC",
+		"price": 100000,
+		"category": "Sin categoria",
+		"description": "Enterizo largo Epic diseñado para máximo rendimiento deportivo. Confeccionado con tela de compresión que moldea la figura y brinda soporte durante entrenamientos intensos.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 11,
+		"name": "LEGGINS PUSH UP",
+		"price": 70000,
+		"category": "Sin categoria",
+		"description": "Leggins con tecnología push up que realza y moldea la figura. Ideal para entrenamientos donde buscas comodidad, soporte y un look favorecedor.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 12,
+		"name": "TOP CAREN",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Top deportivo Caren de diseño clásico y funcional. Perfecto para entrenamientos de baja a media intensidad, brinda comodidad y libertad de movimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 13,
+		"name": "TOP MICRO FIBRA",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Top confeccionado en microfibra ultra suave que se adapta al cuerpo. Ideal para entrenamientos ligeros, yoga y actividades que requieren flexibilidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 16,
+		"name": "SUDADERA",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Sudadera deportiva cómoda y versátil para entrenamientos en clima frío. Confeccionada en materiales que mantienen el calor corporal mientras permiten la transpiración.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 17,
+		"name": "PANTALONETA",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Pantaloneta deportiva básica de corte clásico. Ideal para entrenamientos diarios, deportes al aire libre y actividades físicas casuales.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 18,
+		"name": "BLUSA MANGA CORTA",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Blusa deportiva de manga corta con diseño femenino y funcional. Perfecta para entrenamientos ligeros y actividades que requieren comodidad y estilo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 19,
+		"name": "TOP ESQUELETO",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Top con diseño esqueleto que combina estilo único con funcionalidad deportiva. Ideal para entrenamientos donde quieres destacar con un look moderno.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 20,
+		"name": "ESTRA CORTO PUSH UP",
+		"price": 50000,
+		"category": "Sin categoria",
+		"description": "Short extra corto con tecnología push up que realza y moldea la figura. Ideal para entrenamientos donde buscas comodidad y un look favorecedor.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 21,
+		"name": "MAMISETA MANGA CORTA",
+		"price": 40000,
+		"category": "Sin categoria",
+		"description": "Camiseta deportiva de manga corta con diseño clásico y cómodo. Perfecta para entrenamientos diarios y actividades deportivas casuales.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 23,
+		"name": "CAMISILLA DRIFIT",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Camisilla con tecnología Dri-Fit que elimina la humedad del cuerpo. Ideal para entrenamientos intensos donde la transpiración es alta.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 24,
+		"name": "PANTALONETA TRACK",
+		"price": 60000,
+		"category": "Sin categoria",
+		"description": "Pantaloneta Track de diseño deportivo especializada para correr y entrenamientos cardiovasculares. Incluye características técnicas para atletas exigentes.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 25,
+		"name": "PANTALONETA CRACK",
+		"price": 60000,
+		"category": "Sin categoria",
+		"description": "Pantaloneta Crack de alta performance para deportistas profesionales. Diseñada con materiales técnicos que optimizan el rendimiento deportivo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 27,
+		"name": "PANALONETA TYLER",
+		"price": 60000,
+		"category": "Sin categoria",
+		"description": "Pantaloneta Tyler con diseño moderno y funcional. Perfecta para entrenamientos variados y deportes que requieren libertad de movimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 30,
+		"name": "BUSO LOUNGE",
+		"price": 70000,
+		"category": "Sin categoria",
+		"description": "Buso Lounge de estilo casual-deportivo perfecto para entrenamientos ligeros y uso diario. Combina comodidad y estilo para un look relajado pero deportivo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 32,
+		"name": "BUZO SOUL",
+		"price": 100000,
+		"category": "Sin categoria",
+		"description": "Buzo Soul de alta calidad diseñado para deportistas exigentes. Confeccionado con materiales premium que brindan durabilidad y comodidad excepcional.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 33,
+		"name": "HODDIE LOUNGE",
+		"price": 60000,
+		"category": "Sin categoria",
+		"description": "Hoodie Lounge con capucha, ideal para entrenamientos en clima frío y uso casual. Diseño cómodo que mantiene el calor corporal sin comprometer la movilidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 35,
+		"name": "STRAPS PESAS",
+		"price": 50000,
+		"category": "Sin categoria",
+		"description": "Straps para pesas que mejoran el agarre y permiten levantar más peso de forma segura. Accesorio esencial para entrenamientos de fuerza y halterofilia.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 36,
+		"name": "CANGURO SPORT BAG",
+		"price": 40000,
+		"category": "Sin categoria",
+		"description": "Canguro deportivo compacto y funcional para llevar tus esenciales durante el entrenamiento. Diseño ergonómico que no interfiere con el movimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 37,
+		"name": "MEDIAS",
+		"price": 15000,
+		"category": "Sin categoria",
+		"description": "Medias deportivas con tecnología anti-humedad y refuerzo en zonas de mayor desgaste. Esenciales para cualquier actividad deportiva, brindan comodidad y protección.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 38,
+		"name": "SHORT EXTRACORTP SUPLEX",
+		"price": 40000,
+		"category": "Sin categoria",
+		"description": "Short extra corto confeccionado en tela suplex de alta calidad. Ideal para entrenamientos de alta intensidad que requieren libertad de movimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 39,
+		"name": "FAJA CINTURILLA",
+		"price": 80000,
+		"category": "Sin categoria",
+		"description": "Faja cinturilla que proporciona soporte lumbar y abdominal durante entrenamientos pesados. Ayuda a mantener la postura correcta y reduce el riesgo de lesiones.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 41,
+		"name": "TERMO",
+		"price": 20000,
+		"category": "Sin categoria",
+		"description": "Termo deportivo para mantener tus bebidas a la temperatura ideal durante el entrenamiento. Diseño ergonómico y capacidad perfecta para hidratación deportiva.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 42,
+		"name": "LEGGINS",
+		"price": 80000,
+		"category": "Sin categoria",
+		"description": "Leggins deportivos de alta calidad con excelente ajuste y soporte. Perfectos para entrenamientos variados, proporcionan comodidad y libertad de movimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 43,
+		"name": "ENTERIZO BOTA ANCHA",
+		"price": 150000,
+		"category": "Sin categoria",
+		"description": "Enterizo con diseño bota ancha que combina comodidad suprema con estilo moderno. Ideal para entrenamientos relajados, yoga y actividades de bienestar.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 52,
+		"name": "PANTALONETA LICRA",
+		"price": 55000,
+		"category": "Sin categoria",
+		"description": "Pantaloneta de licra con compresión que mejora el rendimiento muscular. Ideal para entrenamientos intensos donde necesitas soporte y comodidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 53,
+		"name": "MANGA SISA",
+		"price": 50000,
+		"category": "Sin categoria",
+		"description": "Camiseta deportiva manga sisa con excelente ventilación. Perfecta para entrenamientos en clima cálido y actividades que requieren libertad en los brazos.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 73,
+		"name": "Toalla GYM",
+		"price": 12000,
+		"category": "Sin categoria",
+		"description": "Toalla deportiva de secado rápido, compacta y absorbente. Accesorio esencial para el gimnasio, con tecnología antimicrobiana y tamaño práctico.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 83,
+		"name": "TOPKARINA UNICOLOR",
+		"price": 25000,
+		"category": "Sin categoria",
+		"description": "Top Karina unicolor de diseño clásico y elegante. Ideal para entrenamientos ligeros y actividades deportivas donde buscas simplicidad y comodidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 84,
+		"name": "TOP MICROFIBRA CRUZADO",
+		"price": 25000,
+		"category": "Sin categoria",
+		"description": "Top de microfibra con diseño cruzado en la espalda que brinda soporte adicional. Perfecto para yoga, pilates y entrenamientos que requieren flexibilidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 85,
+		"name": "TOP POWERZIP",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Top PowerZip con cierre frontal para fácil uso. Diseñado para entrenamientos intensos, ofrece soporte superior y comodidad durante la actividad física.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 86,
+		"name": "TOP kAREN UNICOLOR",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Top Karen unicolor de diseño versátil y funcional. Perfecto para combinaciones deportivas, brinda comodidad y estilo en entrenamientos variados.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 87,
+		"name": "TOP CRUSH",
+		"price": 30000,
+		"category": "Sin categoria",
+		"description": "Top Crush con diseño moderno que favorece la figura. Ideal para entrenamientos donde quieres lucir deportiva y a la moda.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 88,
+		"name": "LEGGINS UNICOLOR",
+		"price": 60000,
+		"category": "Sin categoria",
+		"description": "Leggins unicolor versátiles que combinan con cualquier top deportivo. Excelente compresión y comodidad para entrenamientos de cualquier intensidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 89,
+		"name": "CAMISILLA FLEX HOMBRE",
+		"price": 44000,
+		"category": "Sin categoria",
+		"description": "Camisilla Flex especialmente diseñada para hombre con tecnología de flexibilidad. Ideal para entrenamientos de fuerza y actividades que requieren amplitud de movimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 91,
+		"name": "CAMISETA MANGA CORTA",
+		"price": 40000,
+		"category": "Sin categoria",
+		"description": "Camiseta deportiva manga corta de diseño clásico y funcional. Perfecta para entrenamientos diarios, con tela transpirable y corte cómodo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 92,
+		"name": "CINTURONES DE FUERZA",
+		"price": 95000,
+		"category": "Sin categoria",
+		"description": "Cinturón de fuerza profesional para levantamiento de pesas pesadas. Proporciona soporte lumbar y estabilidad durante entrenamientos de halterofilia.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 102,
+		"name": "Faja cinturilla",
+		"price": 70000,
+		"category": "Sin categoria",
+		"description": "Faja cinturilla para soporte abdominal y lumbar durante el ejercicio. Ayuda a mantener la postura correcta y mejora la estabilidad del core.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 106,
+		"name": "MUÑEQUERAS",
+		"price": 65000,
+		"category": "Sin categoria",
+		"description": "Muñequeras deportivas que brindan soporte y protección durante entrenamientos de fuerza. Previenen lesiones y mejoran la estabilidad en levantamientos.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 107,
+		"name": "GUANTES MUJER",
+		"price": 45000,
+		"category": "Sin categoria",
+		"description": "Guantes deportivos diseñados específicamente para mujeres. Protegen las manos durante entrenamientos con pesas y mejoran el agarre en barras y mancuernas.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 108,
+		"name": "GUANTES HOMBRE",
+		"price": 50000,
+		"category": "Sin categoria",
+		"description": "Guantes deportivos para hombre con excelente agarre y protección. Ideales para entrenamientos de fuerza, evitan callos y mejoran el rendimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 109,
+		"name": "Básicas",
+		"price": 68000,
+		"category": "Sin categoria",
+		"description": "Prendas básicas deportivas esenciales para cualquier guardarropa fitness. Diseño versátil y funcional para entrenamientos y uso casual.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 174,
+		"name": "TERMO 1100ML",
+		"price": 27000,
+		"category": "Sin categoria",
+		"description": "Termo deportivo de gran capacidad (1100ml) para hidratación prolongada durante entrenamientos largos. Mantiene la temperatura por horas con diseño ergonómico.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 175,
+		"name": "TERMO 800 ML",
+		"price": 20000,
+		"category": "Sin categoria",
+		"description": "Termo deportivo de capacidad media (800ml) perfecto para entrenamientos regulares. Diseño compacto y funcional con excelente aislamiento térmico.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 56,
+		"name": "ISOLATE GOURMET 2 LIBRAS",
+		"price": 165000,
+		"category": "Suplementos",
+		"description": "Proteína aislada gourmet de alta pureza (2 libras) con excelente perfil de aminoácidos. Ideal para desarrollo muscular y recuperación post-entrenamiento con sabor premium.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 57,
+		"name": "WHEY ELITE 5 LBS",
+		"price": 265000,
+		"category": "Suplementos",
+		"description": "Proteína Whey Elite de 5 libras, fórmula avanzada para atletas serios. Proporciona 25g de proteína por servida para máximo crecimiento muscular y recuperación.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 59,
+		"name": "WHEY ELITE DISPLAY 15",
+		"price": 12000,
+		"category": "Suplementos",
+		"description": "Muestra individual de Whey Elite para probar antes de comprar. Perfecta para conocer el sabor y efectos de esta proteína premium en formato conveniente.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 60,
+		"name": "GOURMET 5 LBS",
+		"price": 325000,
+		"category": "Suplementos",
+		"description": "Proteína gourmet de 5 libras con sabores únicos y textura cremosa. Fórmula premium para deportistas exigentes que buscan calidad y sabor excepcional.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 62,
+		"name": "SACHET AMINOELITE SOBRE",
+		"price": 7000,
+		"category": "Suplementos",
+		"description": "Aminoácidos esenciales en formato individual para consumo inmediato. Ideal para llevar al gimnasio y tomar durante o después del entrenamiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 63,
+		"name": "CREATINE POWER 2 LBS",
+		"price": 65000,
+		"category": "Suplementos",
+		"description": "Creatina monohidrato pura de 2 libras para aumentar fuerza y potencia muscular. Mejora el rendimiento en entrenamientos de alta intensidad y corta duración.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 64,
+		"name": "BIPRO CLASSIC 3 LBS",
+		"price": 195000,
+		"category": "Suplementos",
+		"description": "Proteína BiPro Classic de 3 libras con fórmula balanceada para ganancia muscular. Contiene proteínas de alta calidad con digestión optimizada y sabor delicioso.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 65,
+		"name": "INTENZE",
+		"price": 145000,
+		"category": "Suplementos",
+		"description": "Pre-entreno Intenze de alta potencia para máximo rendimiento. Fórmula avanzada con cafeína, beta-alanina y otros ingredientes para energía explosiva.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 66,
+		"name": "BURNER STACK",
+		"price": 130000,
+		"category": "Suplementos",
+		"description": "Quemador de grasa Burner Stack con fórmula termogénica avanzada. Ayuda a acelerar el metabolismo y la pérdida de grasa corporal de forma natural.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 67,
+		"name": "CREA STACK",
+		"price": 140000,
+		"category": "Suplementos",
+		"description": "Stack de creatina con múltiples formas para máxima absorción y efectividad. Aumenta fuerza, potencia y volumen muscular con fórmula científicamente respaldada.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 69,
+		"name": "C4 30SERVI",
+		"price": 125000,
+		"category": "Suplementos",
+		"description": "Pre-entreno C4 de 30 servicios con fórmula explosiva para máximo rendimiento. Contiene cafeína, beta-alanina y creatina para energía y fuerza durante el entrenamiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 70,
+		"name": "SMART 3 LBS",
+		"price": 135000,
+		"category": "Suplementos",
+		"description": "Proteína Smart de 3 libras con fórmula inteligente para desarrollo muscular. Combina diferentes tipos de proteína para absorción gradual y sostenida.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 72,
+		"name": "BI PRO CLASSIC 2LBS",
+		"price": 140000,
+		"category": "Suplementos",
+		"description": "Proteína BiPro Classic de 2 libras, fórmula clásica y confiable para crecimiento muscular. Excelente perfil de aminoácidos con sabor delicioso.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 77,
+		"name": "barra proteina cookies and cream",
+		"price": 13000,
+		"category": "Suplementos",
+		"description": "Barra proteica sabor cookies and cream, deliciosa y nutritiva. Perfecta como snack saludable entre comidas o después del entrenamiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 78,
+		"name": "Burner stack  bebida lata",
+		"price": 12000,
+		"category": "Suplementos",
+		"description": "Bebida termogénica Burner Stack en lata para consumo inmediato. Acelera el metabolismo y ayuda en la quema de grasa de forma práctica y conveniente.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 80,
+		"name": "MYTH LEGENDARY PRE-WORKOUT",
+		"price": 12000,
+		"category": "Suplementos",
+		"description": "Pre-entreno Myth Legendary en formato individual. Fórmula legendaria para energía explosiva y rendimiento máximo durante entrenamientos intensos.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 81,
+		"name": "NITRO SHOCK",
+		"price": 98000,
+		"category": "Suplementos",
+		"description": "Nitro Shock pre-entreno de alta potencia con óxido nítrico para vascularización extrema. Aumenta el bombeo muscular y mejora el rendimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 82,
+		"name": "CREATINE POWER 10LBS",
+		"price": 195000,
+		"category": "Suplementos",
+		"description": "Creatina Power de 10 libras, formato económico para uso prolongado. Creatina monohidrato pura para máxima fuerza y volumen muscular.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 94,
+		"name": "AMINO ENERGY",
+		"price": 135000,
+		"category": "Suplementos",
+		"description": "Amino Energy con aminoácidos esenciales y cafeína natural. Perfecto para tomar durante el entrenamiento, proporciona energía y ayuda en la recuperación muscular.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 95,
+		"name": "AMINOx",
+		"price": 135000,
+		"category": "Suplementos",
+		"description": "AminoX con aminoácidos de cadena ramificada (BCAA) para prevenir el catabolismo muscular. Ideal para tomar durante entrenamientos prolongados.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 97,
+		"name": "CREATINA HEALTHY SPORTS 50 SERV",
+		"price": 75000,
+		"category": "Suplementos",
+		"description": "Creatina Healthy Sports de 50 servicios, fórmula pura y efectiva. Aumenta la fuerza y potencia muscular para entrenamientos de alta intensidad.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 98,
+		"name": "CREATINA HEALTHY SPORTS 100 SERV",
+		"price": 130000,
+		"category": "Suplementos",
+		"description": "Creatina Healthy Sports de 100 servicios, formato económico de larga duración. Creatina monohidrato de alta pureza para máximo rendimiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 99,
+		"name": "BI PRO LITE 2.4 LBS",
+		"price": 140000,
+		"category": "Suplementos",
+		"description": "BiPro Lite de 2.4 libras, versión ligera con menos calorías. Ideal para quienes buscan desarrollar músculo magro sin ganar peso adicional.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 100,
+		"name": "OMEGA3",
+		"price": 75000,
+		"category": "Suplementos",
+		"description": "Omega 3 con ácidos grasos esenciales para la salud cardiovascular y articular. Reduce la inflamación y mejora la recuperación post-entrenamiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 101,
+		"name": "LEGACY 50 SERV",
+		"price": 110000,
+		"category": "Suplementos",
+		"description": "Legacy pre-entreno de 50 servicios con fórmula heredada de campeones. Energía limpia y enfoque mental para entrenamientos excepcionales.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 103,
+		"name": "ATO MIC 05",
+		"price": 95000,
+		"category": "Suplementos",
+		"description": "Ato Mic 05 suplemento avanzado para rendimiento atlético. Fórmula científica que optimiza la función celular y mejora la capacidad de entrenamiento.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 104,
+		"name": "LIPO 6 BLACK",
+		"price": 105000,
+		"category": "Suplementos",
+		"description": "Lipo 6 Black quemador de grasa de máxima potencia. Fórmula ultra concentrada para acelerar el metabolismo y la pérdida de grasa corporal.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 105,
+		"name": "HYDROXYCUT",
+		"price": 110000,
+		"category": "Suplementos",
+		"description": "Hydroxycut quemador de grasa clínicamente probado. Aumenta el metabolismo y ayuda a quemar grasa mientras preserva la masa muscular.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 110,
+		"name": "COLAGENO",
+		"price": 90000,
+		"category": "Suplementos",
+		"description": "Colágeno hidrolizado para la salud de articulaciones, piel y tejidos conectivos. Mejora la recuperación y mantiene la flexibilidad articular.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 145,
+		"name": "FOOD BAR",
+		"price": 10000,
+		"category": "Suplementos",
+		"description": "Barra nutritiva Food Bar con ingredientes naturales. Snack saludable rico en proteínas y carbohidratos complejos para energía sostenida.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 146,
+		"name": "WHEY ELITE 2 LBS",
+		"price": 150000,
+		"category": "Suplementos",
+		"description": "Proteína Whey Elite de 2 libras, formato compacto de la fórmula premium. Ideal para quienes buscan calidad superior en presentación práctica.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 147,
+		"name": "CREATINA VITANAS 100 SERV",
+		"price": 98000,
+		"category": "Suplementos",
+		"description": "Creatina Vitanas de 100 servicios, fórmula pura y micronizada para mejor absorción. Aumenta fuerza, potencia y volumen muscular.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 148,
+		"name": "SMART BAR",
+		"price": 10000,
+		"category": "Suplementos",
+		"description": "Smart Bar inteligente con balance perfecto de macronutrientes. Barra proteica diseñada para satisfacer las necesidades nutricionales del atleta.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 149,
+		"name": "MAGNESIUM CITRATE",
+		"price": 40000,
+		"category": "Suplementos",
+		"description": "Citrato de magnesio para la salud muscular y nerviosa. Previene calambres, mejora la relajación muscular y apoya la función cardiovascular.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 151,
+		"name": "INTENZE SERV 14",
+		"price": 75000,
+		"category": "Suplementos",
+		"description": "Intenze de 14 servicios, formato de prueba del pre-entreno de alta potencia. Perfecto para conocer los efectos antes de comprar el formato completo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 154,
+		"name": "BIPRO COMPLEX",
+		"price": 150000,
+		"category": "Suplementos",
+		"description": "BiPro Complex con fórmula avanzada de múltiples proteínas. Combina diferentes fuentes proteicas para absorción sostenida y máximo anabolismo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 155,
+		"name": "AMINO BUILD",
+		"price": 175000,
+		"category": "Suplementos",
+		"description": "Amino Build con aminoácidos esenciales y leucina extra para construcción muscular. Optimiza la síntesis proteica y acelera la recuperación.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 157,
+		"name": "CRETINA PLATIUM",
+		"price": 170000,
+		"category": "Suplementos",
+		"description": "Creatina Platinum de calidad superior con múltiples formas de creatina. Fórmula premium para atletas que buscan máximo rendimiento y resultados.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 158,
+		"name": "NITRO TECH 2 LBS",
+		"price": 202000,
+		"category": "Suplementos",
+		"description": "Nitro Tech de 2 libras, proteína científicamente superior con creatina. Fórmula avanzada para máximo crecimiento muscular y fuerza.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 159,
+		"name": "NITRO SHOCK",
+		"price": 95000,
+		"category": "Suplementos",
+		"description": "Nitro Shock pre-entreno con óxido nítrico para vascularización extrema. Mejora el bombeo muscular y el transporte de nutrientes.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 160,
+		"name": "PLATINUM MULTIVITAMINICO",
+		"price": 90000,
+		"category": "Suplementos",
+		"description": "Multivitamínico Platinum con vitaminas y minerales esenciales. Apoya la salud general, el sistema inmune y optimiza el rendimiento deportivo.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 161,
+		"name": "NITRO TECH WHEY GOLD 5 LBS",
+		"price": 340000,
+		"category": "Suplementos",
+		"description": "Nitro Tech Whey Gold de 5 libras, la proteína más avanzada del mercado. Fórmula premium con péptidos bioactivos para resultados superiores.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 162,
+		"name": "CREATINE POWDER SER 60",
+		"price": 160000,
+		"category": "Suplementos",
+		"description": "Creatine Powder de 60 servicios, creatina micronizada para mejor disolución. Aumenta fuerza, potencia y volumen muscular de forma efectiva.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 163,
+		"name": "CREATINE POWDER SER 120",
+		"price": 240000,
+		"category": "Suplementos",
+		"description": "Creatine Powder de 120 servicios, formato económico de larga duración. Creatina micronizada premium para atletas serios y uso prolongado.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 165,
+		"name": "AMINOX SER 30",
+		"price": 140000,
+		"category": "Suplementos",
+		"description": "AminoX de 30 servicios con aminoácidos de cadena ramificada. Ideal para prevenir el catabolismo muscular durante entrenamientos prolongados.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 166,
+		"name": "AMINOX SER 70",
+		"price": 230000,
+		"category": "Suplementos",
+		"description": "AminoX de 70 servicios, formato económico con BCAA de alta calidad. Perfecto para atletas que entrenan frecuentemente y necesitan recuperación constante.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 167,
+		"name": "C4 SER 30",
+		"price": 125000,
+		"category": "Suplementos",
+		"description": "C4 de 30 servicios, el pre-entreno más popular del mundo. Fórmula explosiva con cafeína, beta-alanina y arginina para energía máxima.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 168,
+		"name": "ISO 100 5 LBS",
+		"price": 425000,
+		"category": "Suplementos",
+		"description": "ISO 100 de 5 libras, proteína aislada de máxima pureza. La proteína más rápida y limpia del mercado, ideal para resultados profesionales.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 170,
+		"name": "SUPER MASS GAINER 2.7 KG",
+		"price": 240000,
+		"category": "Suplementos",
+		"description": "Super Mass Gainer de 2.7 kg para ganancia de peso y masa muscular. Alto contenido calórico con proteínas y carbohidratos complejos para atletas que buscan volumen.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 171,
+		"name": "CREATINE ULTRA PURE 100 SERV",
+		"price": 110000,
+		"category": "Suplementos",
+		"description": "Creatine Ultra Pure de 100 servicios, máxima pureza y calidad. Creatina monohidrato sin aditivos para atletas que buscan resultados puros y efectivos.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 172,
+		"name": "PASE",
+		"price": 105000,
+		"category": "Suplementos",
+		"description": "Suplemento Pase de fórmula especializada para rendimiento deportivo. Diseñado para atletas que buscan optimizar su capacidad de entrenamiento y recuperación.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 173,
+		"name": "ISO 100 2.3 KG",
+		"price": 359000,
+		"category": "Suplementos",
+		"description": "ISO 100 de 2.3 kg, proteína aislada premium de máxima pureza. Absorción ultra rápida y sin lactosa, ideal para atletas profesionales y competidores.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 176,
+		"name": "BI PRO MASS",
+		"price": 165000,
+		"category": "Suplementos",
+		"description": "BiPro Mass ganador de peso con proteínas de alta calidad. Fórmula balanceada para aumentar masa muscular magra sin exceso de grasa corporal.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 177,
+		"name": "BI PRO CLASSIC",
+		"price": 150000,
+		"category": "Suplementos",
+		"description": "BiPro Classic proteína confiable y efectiva para desarrollo muscular. Fórmula clásica con excelente perfil de aminoácidos y sabor delicioso.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 178,
+		"name": "CREATINE VITANAS 50 SERV",
+		"price": 58000,
+		"category": "Suplementos",
+		"description": "Creatine Vitanas de 50 servicios, creatina micronizada de alta calidad. Aumenta fuerza y potencia muscular con excelente relación calidad-precio.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	},
+	{
+		"id": 179,
+		"name": "CREATINE PLATINUM 80 SERV",
+		"price": 170000,
+		"category": "Suplementos",
+		"description": "Creatine Platinum de 80 servicios, fórmula premium con múltiples tipos de creatina. Máxima absorción y efectividad para atletas de élite.",
+		"images": [
+			"assets/placeholder.svg"
+		]
+	}
+]
