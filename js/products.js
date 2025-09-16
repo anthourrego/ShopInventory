@@ -8,6 +8,9 @@ const products = [
 // Array vacío como fallback
 const products = [];
 
+// Caché de productos para evitar peticiones innecesarias
+const productsCache = new Map();
+
 // Asegurar que las constantes globales estén disponibles (definidas en main.js)
 if (typeof API_CONFIG === 'undefined') {
     console.warn('⚠️ API_CONFIG no encontrado, usando configuración local');
@@ -24,6 +27,31 @@ if (typeof API_CONFIG === 'undefined') {
     window.buildApiUrl = function(endpoint, params = '') {
         return `${window.API_CONFIG.BASE_URL}${endpoint}${params}`;
     };
+}
+
+// Funciones de manejo de caché
+function addToCache(product) {
+    if (product && product.id) {
+        productsCache.set(parseInt(product.id), product);
+        console.log(`💾 Producto ${product.id} agregado al caché`);
+    }
+}
+
+function getFromCache(productId) {
+    const castedId = parseInt(productId);
+    const cachedProduct = productsCache.get(castedId);
+    if (cachedProduct) {
+        console.log(`🚀 Producto ${castedId} encontrado en caché`);
+        return cachedProduct;
+    }
+    return null;
+}
+
+function addMultipleToCache(products) {
+    if (Array.isArray(products)) {
+        products.forEach(product => addToCache(product));
+        console.log(`💾 ${products.length} productos agregados al caché`);
+    }
 }
 
 // Función para obtener productos por categoría
@@ -59,6 +87,9 @@ async function getProductsByCategory(category, categoryId = null) {
             images: product.images || ['assets/placeholder.svg']
         }));
         
+        // Agregar productos al caché automáticamente
+        addMultipleToCache(processedProducts);
+        
         return processedProducts;
         
     } catch (error) {
@@ -90,6 +121,9 @@ async function getProductById(id) {
             images: product.images || ['assets/placeholder.svg']
         };
         
+        // Agregar producto al caché automáticamente
+        addToCache(processedProduct);
+        
         return processedProduct;
         
     } catch (error) {
@@ -117,6 +151,9 @@ async function searchProducts(query) {
             ...product,
             images: product.images || ['assets/placeholder.svg']
         }));
+        
+        // Agregar productos al caché automáticamente
+        addMultipleToCache(processedProducts);
         
         return processedProducts;
         
@@ -170,7 +207,7 @@ function renderProducts(productsToRender) {
     }
     
     grid.innerHTML = productsToRender.map(product => `
-        <div class="product-card" data-product-id="${product.id}" onclick="openProductModal(${product.id}); console.log('Card clicked for product: ${product.id}');">
+        <div class="product-card" data-product-id="${product.id}" onclick="openProductModalWithCache(${product.id}); console.log('Card clicked for product: ${product.id}');">
             <div class="product-images">
                 <img src="${product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg'}" alt="${product.name}" class="product-main-image" 
                      onerror="this.src='assets/placeholder.svg'">
@@ -206,9 +243,279 @@ async function loadInitialProducts() {
     }
 }
 
-// Función para abrir modal de producto
+// Función para castear valores de productos
+function castProductValues(product) {
+    console.log('🔄 Casteando valores del producto:', product);
+    
+    if (!product) {
+        console.warn('⚠️ Producto nulo o indefinido');
+        return null;
+    }
+    
+    try {
+        const castedProduct = {
+            // Castear ID como número
+            id: parseInt(product.id) || 0,
+            
+            // Castear nombre como string
+            name: String(product.name || '').trim(),
+            
+            // Castear precio como número
+            price: parseFloat(product.price) || 0,
+            
+            // Castear descripción como string
+            description: String(product.description || '').trim(),
+            
+            // Castear categoría como string
+            category: String(product.category || '').trim(),
+            
+            // Castear imágenes como array de strings
+            images: Array.isArray(product.images) 
+                ? product.images.map(img => String(img || '').trim()).filter(img => img)
+                : [],
+            
+            // Mantener propiedades adicionales si existen
+            ...Object.keys(product).reduce((acc, key) => {
+                if (!['id', 'name', 'price', 'description', 'category', 'images'].includes(key)) {
+                    acc[key] = product[key];
+                }
+                return acc;
+            }, {})
+        };
+        
+        console.log('✅ Producto casteado correctamente:', {
+            id: castedProduct.id,
+            name: castedProduct.name,
+            price: castedProduct.price,
+            imagesCount: castedProduct.images.length
+        });
+        
+        return castedProduct;
+        
+    } catch (error) {
+        console.error('❌ Error casteando producto:', error);
+        return product; // Devolver original si hay error
+    }
+}
+
+// Función optimizada para abrir modal de producto usando caché
+async function openProductModalWithCache(productId) {
+    // Castear productId a número
+    const castedProductId = parseInt(productId);
+    console.log('🚀 Abriendo modal para producto:', castedProductId, '(original:', productId, ')');
+    
+    // Obtener elementos del DOM
+    const modal = document.getElementById('product-modal');
+    const overlay = document.getElementById('overlay');
+    
+    if (!modal || !overlay) {
+        console.error('❌ Elementos del modal no encontrados');
+        alert('Error: Modal no disponible');
+        return;
+    }
+    
+    // Intentar obtener producto desde caché primero
+    let product = getFromCache(castedProductId);
+    
+    if (product) {
+        console.log('💾 Usando producto desde caché - NO se hará petición al endpoint');
+        
+        // Castear valores del producto para asegurar tipos correctos
+        const castedProduct = castProductValues(product);
+        
+        // Llenar modal directa e inmediatamente con datos del caché
+        populateProductModal(castedProduct, castedProductId, modal, overlay);
+        
+    } else {
+        console.log('🌐 Producto no encontrado en caché - consultando endpoint...');
+        
+        // Mostrar modal con estado de carga
+        showLoadingModal(modal, overlay);
+        
+        // Obtener producto desde endpoint
+        product = await getProductById(castedProductId);
+        if (!product) {
+            console.error('❌ Producto no encontrado:', castedProductId);
+            showErrorModal(modal);
+            return;
+        }
+        
+        console.log('✅ Producto obtenido desde endpoint:', product.name);
+        
+        // Castear valores del producto
+        const castedProduct = castProductValues(product);
+        
+        // Llenar modal con datos obtenidos
+        populateProductModal(castedProduct, castedProductId, modal, overlay);
+    }
+}
+
+// Función auxiliar para mostrar modal con estado de carga
+function showLoadingModal(modal, overlay) {
+    const modalName = document.getElementById('modal-product-name');
+    const modalPrice = document.getElementById('modal-product-price');
+    const modalDescription = document.getElementById('modal-product-description');
+    
+    if (modalName) modalName.textContent = 'Cargando...';
+    if (modalPrice) modalPrice.textContent = '$0';
+    if (modalDescription) modalDescription.textContent = 'Obteniendo información del producto...';
+    
+    modal.classList.add('show');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    console.log('✅ Modal mostrado con estado de carga');
+}
+
+// Función auxiliar para mostrar modal con error
+function showErrorModal(modal) {
+    const modalName = document.getElementById('modal-product-name');
+    const modalDescription = document.getElementById('modal-product-description');
+    
+    if (modalName) modalName.textContent = 'Producto no encontrado';
+    if (modalDescription) modalDescription.textContent = 'No se pudo cargar la información del producto.';
+}
+
+// Función auxiliar para llenar el modal con datos del producto
+function populateProductModal(castedProduct, castedProductId, modal, overlay) {
+    const modalName = document.getElementById('modal-product-name');
+    const modalPrice = document.getElementById('modal-product-price');
+    const modalDescription = document.getElementById('modal-product-description');
+    
+    console.log('🎨 Llenando modal con datos del producto:', castedProduct.name);
+    
+    // Llenar información básica del producto
+    try {
+        if (modalName) modalName.textContent = castedProduct.name;
+        if (modalPrice) modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
+        if (modalDescription) modalDescription.textContent = castedProduct.description;
+        
+        console.log('✅ Información del producto cargada');
+    } catch (error) {
+        console.error('❌ Error cargando información:', error);
+    }
+    
+    // Configurar imágenes
+    try {
+        const imagesWrapper = document.getElementById('product-images-wrapper');
+        if (imagesWrapper) {
+            if (castedProduct.images && castedProduct.images.length > 0) {
+                imagesWrapper.innerHTML = castedProduct.images.map(image => `
+                    <div class="swiper-slide">
+                        <img src="${image}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
+                             onerror="this.src='assets/placeholder.svg'">
+                    </div>
+                `).join('');
+            } else {
+                // Si no hay imágenes, usar placeholder por defecto
+                imagesWrapper.innerHTML = `
+                    <div class="swiper-slide">
+                        <img src="assets/placeholder.svg" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                `;
+            }
+            console.log('✅ Imágenes configuradas');
+        }
+    } catch (error) {
+        console.error('❌ Error cargando imágenes:', error);
+    }
+    
+    // Configurar botón de agregar al carrito
+    try {
+        const addToCartBtn = document.getElementById('add-to-cart-modal');
+        if (addToCartBtn) {
+            addToCartBtn.onclick = async function() {
+                console.log('🛒 Agregando al carrito...');
+                const quantityInput = document.getElementById('quantity');
+                
+                const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
+                
+                // Deshabilitar botón mientras se procesa
+                addToCartBtn.disabled = true;
+                addToCartBtn.textContent = 'Agregando...';
+                
+                try {
+                    if (typeof addToCart === 'function') {
+                        await addToCart(castedProductId, quantity);
+                        closeProductModal();
+                    } else {
+                        console.error('❌ Función addToCart no disponible');
+                        alert('Error: Función de carrito no disponible');
+                    }
+                } catch (error) {
+                    console.error('❌ Error agregando al carrito:', error);
+                } finally {
+                    // Restaurar botón
+                    addToCartBtn.disabled = false;
+                    addToCartBtn.textContent = 'Agregar al carrito';
+                }
+            };
+            console.log('✅ Botón de carrito configurado');
+        }
+    } catch (error) {
+        console.error('❌ Error configurando botón:', error);
+    }
+    
+    // Configurar controles de cantidad
+    try {
+        const qtyMinus = document.getElementById('qty-minus');
+        const qtyPlus = document.getElementById('qty-plus');
+        const quantityInput = document.getElementById('quantity');
+        
+        // Resetear cantidad a 1 cada vez que se abre el modal
+        if (quantityInput) {
+            quantityInput.value = 1;
+            console.log('🔄 Cantidad reseteada a 1');
+        }
+        
+        if (qtyMinus && quantityInput) {
+            qtyMinus.onclick = function() {
+                let currentValue = parseInt(quantityInput.value) || 1;
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            };
+        }
+        
+        if (qtyPlus && quantityInput) {
+            qtyPlus.onclick = function() {
+                let currentValue = parseInt(quantityInput.value) || 1;
+                quantityInput.value = currentValue + 1;
+            };
+        }
+        
+        console.log('✅ Controles de cantidad configurados');
+    } catch (error) {
+        console.error('❌ Error configurando controles:', error);
+    }
+    
+    // Mostrar modal
+    try {
+        console.log('🎭 Mostrando modal...');
+        modal.classList.add('show');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // Verificar que se aplicó la clase
+        setTimeout(() => {
+            if (modal.classList.contains('show')) {
+                console.log('✅ Modal visible correctamente');
+            } else {
+                console.error('❌ Modal no se mostró correctamente');
+            }
+        }, 100);
+        
+    } catch (error) {
+        console.error('❌ Error mostrando modal:', error);
+        alert('Error mostrando modal: ' + error.message);
+    }
+}
+
+// Función para abrir modal de producto (método original - mantenido para compatibilidad)
 async function openProductModal(productId) {
-    console.log('🚀 Abriendo modal para producto:', productId);
+    // Castear productId a número
+    const castedProductId = parseInt(productId);
+    console.log('🚀 Abriendo modal para producto:', castedProductId, '(original:', productId, ')');
     
     // Obtener elementos del DOM
     const modal = document.getElementById('product-modal');
@@ -237,9 +544,9 @@ async function openProductModal(productId) {
     console.log('✅ Modal mostrado con estado de carga');
     
     // Verificar que el producto existe
-    const product = await getProductById(productId);
+    const product = await getProductById(castedProductId);
     if (!product) {
-        console.error('❌ Producto no encontrado:', productId);
+        console.error('❌ Producto no encontrado:', castedProductId);
         if (modalName) modalName.textContent = 'Producto no encontrado';
         if (modalDescription) modalDescription.textContent = 'No se pudo cargar la información del producto.';
         return;
@@ -247,12 +554,16 @@ async function openProductModal(productId) {
     
     console.log('✅ Producto encontrado:', product.name);
     
+    // Castear valores del producto para asegurar tipos correctos
+    const castedProduct = castProductValues(product);
+    console.log('🔄 Valores del producto casteados:', castedProduct);
+    
     // Llenar información básica del producto
     try {
         
-        if (modalName) modalName.textContent = product.name;
-        if (modalPrice) modalPrice.textContent = '$' + product.price.toLocaleString('es-CO');
-        if (modalDescription) modalDescription.textContent = product.description;
+        if (modalName) modalName.textContent = castedProduct.name;
+        if (modalPrice) modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
+        if (modalDescription) modalDescription.textContent = castedProduct.description;
         
         console.log('✅ Información del producto cargada');
     } catch (error) {
@@ -263,10 +574,10 @@ async function openProductModal(productId) {
     try {
         const imagesWrapper = document.getElementById('product-images-wrapper');
         if (imagesWrapper) {
-            if (product.images && product.images.length > 0) {
-                imagesWrapper.innerHTML = product.images.map(image => `
+            if (castedProduct.images && castedProduct.images.length > 0) {
+                imagesWrapper.innerHTML = castedProduct.images.map(image => `
                     <div class="swiper-slide">
-                        <img src="${image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;" 
+                        <img src="${image}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
                              onerror="this.src='assets/placeholder.svg'">
                     </div>
                 `).join('');
@@ -274,7 +585,7 @@ async function openProductModal(productId) {
                 // Si no hay imágenes, usar placeholder por defecto
                 imagesWrapper.innerHTML = `
                     <div class="swiper-slide">
-                        <img src="assets/placeholder.svg" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="assets/placeholder.svg" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                 `;
             }
@@ -300,7 +611,7 @@ async function openProductModal(productId) {
                 
                 try {
                     if (typeof addToCart === 'function') {
-                        await addToCart(productId, quantity);
+                        await addToCart(castedProductId, quantity);
                         closeProductModal();
                     } else {
                         console.error('❌ Función addToCart no disponible');
@@ -404,6 +715,7 @@ function closeProductModal() {
 // Exportar funciones para uso global
 window.products = products;
 window.productsFromJSON = window.productsFromJSON || [];
+window.productsCache = productsCache;
 window.getProductsByCategory = getProductsByCategory;
 window.getProductById = getProductById;
 window.searchProducts = searchProducts;
@@ -411,4 +723,8 @@ window.formatPrice = formatPrice;
 window.renderProducts = renderProducts;
 window.loadInitialProducts = loadInitialProducts;
 window.openProductModal = openProductModal;
+window.openProductModalWithCache = openProductModalWithCache;
 window.closeProductModal = closeProductModal;
+window.castProductValues = castProductValues;
+window.addToCache = addToCache;
+window.getFromCache = getFromCache;
