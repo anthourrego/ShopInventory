@@ -8,35 +8,122 @@ const products = [
 // Array vacío como fallback
 const products = [];
 
-// Función para obtener productos por categoría
-function getProductsByCategory(category) {
-    // Usar exclusivamente productos del JSON
-    const allProducts = window.productsFromJSON || [];
+// Asegurar que las constantes globales estén disponibles (definidas en main.js)
+if (typeof API_CONFIG === 'undefined') {
+    console.warn('⚠️ API_CONFIG no encontrado, usando configuración local');
+    window.API_CONFIG = {
+        BASE_URL: 'http://inventorysystem/Shop',
+        ENDPOINTS: {
+            CATEGORIES: '/getCategories',
+            PRODUCTS: '/getProducts',
+            PRODUCT_BY_ID: '/getProduct',
+            SEARCH_PRODUCTS: '/searchProducts'
+        }
+    };
     
-    if (!category || category === 'all') {
-        return allProducts;
+    window.buildApiUrl = function(endpoint, params = '') {
+        return `${window.API_CONFIG.BASE_URL}${endpoint}${params}`;
+    };
+}
+
+// Función para obtener productos por categoría
+async function getProductsByCategory(category, categoryId = null) {
+    console.log('🔍 Obteniendo productos para categoría:', category, 'ID:', categoryId);
+    
+    try {
+        let endpoint;
+        
+        // Si es "all" o no hay categoría, usar endpoint para todos los productos
+        if (!category || category === 'all') {
+            endpoint = buildApiUrl(API_CONFIG.ENDPOINTS.PRODUCTS);
+            console.log(`🌐 Consultando TODOS los productos desde: ${endpoint}`);
+        } else if (categoryId) {
+            // Si hay un categoryId, consultar el endpoint específico
+            endpoint = buildApiUrl(API_CONFIG.ENDPOINTS.PRODUCTS, `/${categoryId}`);
+            console.log(`🌐 Consultando productos desde: ${endpoint}`);
+        } else {
+            throw new Error('No se puede consultar productos sin ID de categoría');
+        }
+        
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+        }
+        
+        const products = await response.json();
+        console.log(`✅ ${products.length} productos obtenidos del endpoint`);
+        
+        // Validar y agregar imágenes por defecto si no existen
+        const processedProducts = products.map(product => ({
+            ...product,
+            images: product.images || ['assets/placeholder.svg']
+        }));
+        
+        return processedProducts;
+        
+    } catch (error) {
+        console.error('❌ Error obteniendo productos del endpoint:', error);
+        console.log('� Sin fallback disponible - sistema completamente basado en endpoints');
+        
+        // Sin fallback - devolver array vacío con error
+        return [];
     }
-    return allProducts.filter(product => product.category === category);
 }
 
 // Función para obtener un producto por ID
-function getProductById(id) {
-    // Usar exclusivamente productos del JSON
-    const allProducts = window.productsFromJSON || [];
-    
-    return allProducts.find(product => product.id === parseInt(id));
+async function getProductById(id) {
+    try {
+        const endpoint = buildApiUrl(API_CONFIG.ENDPOINTS.PRODUCT_BY_ID, `/${id}`);
+        console.log(`🌐 Consultando producto por ID desde: ${endpoint}`);
+        
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+        }
+        
+        const product = await response.json();
+        console.log(`✅ Producto obtenido del endpoint:`, product.name);
+        
+        // Validar y agregar imágenes por defecto si no existen
+        const processedProduct = {
+            ...product,
+            images: product.images || ['assets/placeholder.svg']
+        };
+        
+        return processedProduct;
+        
+    } catch (error) {
+        console.error('❌ Error obteniendo producto del endpoint:', error);
+        return null;
+    }
 }
 
 // Función para buscar productos
-function searchProducts(query) {
-    // Usar exclusivamente productos del JSON
-    const allProducts = window.productsFromJSON || [];
-    
-    const searchTerm = query.toLowerCase();
-    return allProducts.filter(product => 
-        product.name.toLowerCase().includes(searchTerm) ||
-        (product.description && product.description.toLowerCase().includes(searchTerm))
-    );
+async function searchProducts(query) {
+    try {
+        const endpoint = buildApiUrl(API_CONFIG.ENDPOINTS.SEARCH_PRODUCTS, `?q=${encodeURIComponent(query)}`);
+        console.log(`🔍 Buscando productos desde: ${endpoint}`);
+        
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+        }
+        
+        const products = await response.json();
+        console.log(`✅ ${products.length} productos encontrados en búsqueda`);
+        
+        // Validar y agregar imágenes por defecto si no existen
+        const processedProducts = products.map(product => ({
+            ...product,
+            images: product.images || ['assets/placeholder.svg']
+        }));
+        
+        return processedProducts;
+        
+    } catch (error) {
+        console.error('❌ Error buscando productos del endpoint:', error);
+        return [];
+    }
 }
 
 // Función para formatear precios
@@ -101,33 +188,27 @@ function renderProducts(productsToRender) {
 }
 
 // Función para cargar productos iniciales
-function loadInitialProducts() {
-    // Esperar hasta que los productos del JSON estén disponibles
-    if (!window.productsFromJSON || window.productsFromJSON.length === 0) {
-        console.log('⏳ Esperando carga de productos del JSON...');
-        setTimeout(loadInitialProducts, 100); // Reintentar en 100ms
-        return;
-    }
+async function loadInitialProducts() {
+    console.log('🚀 Cargando productos iniciales desde endpoints...');
     
     const activeCategory = document.querySelector('.category-item.active')?.dataset.category || 'all';
-    const products = getProductsByCategory(activeCategory);
-    console.log(`📦 Cargando ${products.length} productos para categoría: ${activeCategory}`);
-    renderProducts(products);
+    const activeCategoryId = document.querySelector('.category-item.active')?.dataset.categoryId;
+    const activeCategoryName = document.querySelector('.category-item.active')?.dataset.originalCategory || activeCategory;
+    
+    try {
+        console.log(`📡 Consultando productos para categoría: ${activeCategory}`);
+        const products = await getProductsByCategory(activeCategoryName, activeCategoryId);
+        console.log(`📦 Cargando ${products.length} productos para categoría: ${activeCategory}`);
+        renderProducts(products);
+    } catch (error) {
+        console.error('❌ Error cargando productos iniciales:', error);
+        renderProducts([]); // Mostrar mensaje de error
+    }
 }
 
 // Función para abrir modal de producto
-function openProductModal(productId) {
+async function openProductModal(productId) {
     console.log('🚀 Abriendo modal para producto:', productId);
-    
-    // Verificar que el producto existe
-    const product = getProductById(productId);
-    if (!product) {
-        console.error('❌ Producto no encontrado:', productId);
-        alert('Producto no encontrado');
-        return;
-    }
-    
-    console.log('✅ Producto encontrado:', product.name);
     
     // Obtener elementos del DOM
     const modal = document.getElementById('product-modal');
@@ -139,13 +220,35 @@ function openProductModal(productId) {
         return;
     }
     
-    console.log('✅ Elementos del modal encontrados');
+    // Obtener elementos de contenido
+    const modalName = document.getElementById('modal-product-name');
+    const modalPrice = document.getElementById('modal-product-price');
+    const modalDescription = document.getElementById('modal-product-description');
+    
+    // Mostrar modal con contenido de carga
+    if (modalName) modalName.textContent = 'Cargando...';
+    if (modalPrice) modalPrice.textContent = '$0';
+    if (modalDescription) modalDescription.textContent = 'Obteniendo información del producto...';
+    
+    modal.classList.add('show');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    console.log('✅ Modal mostrado con estado de carga');
+    
+    // Verificar que el producto existe
+    const product = await getProductById(productId);
+    if (!product) {
+        console.error('❌ Producto no encontrado:', productId);
+        if (modalName) modalName.textContent = 'Producto no encontrado';
+        if (modalDescription) modalDescription.textContent = 'No se pudo cargar la información del producto.';
+        return;
+    }
+    
+    console.log('✅ Producto encontrado:', product.name);
     
     // Llenar información básica del producto
     try {
-        const modalName = document.getElementById('modal-product-name');
-        const modalPrice = document.getElementById('modal-product-price');
-        const modalDescription = document.getElementById('modal-product-description');
         
         if (modalName) modalName.textContent = product.name;
         if (modalPrice) modalPrice.textContent = '$' + product.price.toLocaleString('es-CO');
@@ -185,18 +288,30 @@ function openProductModal(productId) {
     try {
         const addToCartBtn = document.getElementById('add-to-cart-modal');
         if (addToCartBtn) {
-            addToCartBtn.onclick = function() {
+            addToCartBtn.onclick = async function() {
                 console.log('🛒 Agregando al carrito...');
                 const quantityInput = document.getElementById('quantity');
                 
                 const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
                 
-                if (typeof addToCart === 'function') {
-                    addToCart(productId, quantity);
-                    closeProductModal();
-                } else {
-                    console.error('❌ Función addToCart no disponible');
-                    alert('Error: Función de carrito no disponible');
+                // Deshabilitar botón mientras se procesa
+                addToCartBtn.disabled = true;
+                addToCartBtn.textContent = 'Agregando...';
+                
+                try {
+                    if (typeof addToCart === 'function') {
+                        await addToCart(productId, quantity);
+                        closeProductModal();
+                    } else {
+                        console.error('❌ Función addToCart no disponible');
+                        alert('Error: Función de carrito no disponible');
+                    }
+                } catch (error) {
+                    console.error('❌ Error agregando al carrito:', error);
+                } finally {
+                    // Restaurar botón
+                    addToCartBtn.disabled = false;
+                    addToCartBtn.textContent = 'Agregar al carrito';
                 }
             };
             console.log('✅ Botón de carrito configurado');

@@ -2,44 +2,10 @@
 let bannerSwiper, categoriesSwiper, productSwiper;
 let productsFromJSON = []; // Array para almacenar productos del JSON
 
-// Función para cargar productos desde JSON
-async function loadProductsFromJSON() {
-    try {
-        console.log('🔄 Cargando productos desde JSON...');
-        const response = await fetch('assets/products.json');
-        if (!response.ok) {
-            throw new Error(`Error HTTP: ${response.status}`);
-        }
-        const products = await response.json();
-        
-        // Validar y agregar imágenes por defecto si no existen
-        productsFromJSON = products.map(product => ({
-            ...product,
-            images: product.images || ['assets/placeholder.svg'],
-            // Asegurar que siempre tenga al menos una imagen
-            category: product.category || 'sin-categoria'
-        }));
-        
-        console.log(`✅ ${productsFromJSON.length} productos cargados desde JSON`);
-        
-        // Hacer los productos accesibles globalmente - ESTA ES LA FUENTE PRINCIPAL
-        window.productsFromJSON = productsFromJSON;
-        
-        // También actualizar window.products para compatibilidad
-        window.products = productsFromJSON;
-        
-        return productsFromJSON;
-    } catch (error) {
-        console.error('❌ Error cargando productos del JSON:', error);
-        console.log('🔄 Usando productos por defecto como fallback');
-        
-        // Fallback: usar un array vacío o productos de demostración mínimos
-        window.productsFromJSON = [];
-        window.products = [];
-        
-        return [];
-    }
-}
+// Configuración API cargada desde config.js
+
+// Sistema completamente basado en endpoints - No se usa más products.json
+// Las funciones de productos ahora consultan directamente los endpoints del sistema de inventario
 
 // Mapeo de categorías a íconos y nombres de visualización
 const categoryConfig = {
@@ -70,7 +36,8 @@ function renderCategories(categories) {
     dynamicSlides.forEach(slide => slide.remove());
 
     categories.forEach(category => {
-        // Asumo que el objeto category tiene una propiedad 'name'
+        // Asumo que el objeto category tiene propiedades 'id' y 'name'
+        const categoryId = category.id;
         const categoryName = category.name;
         const config = categoryConfig[categoryName] || { icon: 'fas fa-tag', display: categoryName };
         
@@ -87,7 +54,7 @@ function renderCategories(categories) {
 
         const slideHTML = `
             <div class="swiper-slide">
-                <div class="category-item" data-category="${categorySlug}" data-original-category="${categoryName}">
+                <div class="category-item" data-category="${categorySlug}" data-original-category="${categoryName}" data-category-id="${categoryId}">
                     <div class="category-icon">
                         <i class="${config.icon}"></i>
                     </div>
@@ -109,7 +76,7 @@ function renderCategories(categories) {
 
 // Nueva función para obtener y renderizar las categorías desde el endpoint
 async function fetchAndRenderCategories() {
-    const endpoint = 'http://inventorysystem/getCategories';
+    const endpoint = buildApiUrl(API_CONFIG.ENDPOINTS.CATEGORIES);
     console.log(`🔄 Cargando categorías desde ${endpoint}...`);
     try {
         const response = await fetch(endpoint);
@@ -140,19 +107,17 @@ async function fetchAndRenderCategories() {
 // Inicialización cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('DOM loaded, initializing app...');
+    console.log('🌐 Sistema completamente basado en endpoints');
     
-    // Cargar productos y categorías en paralelo
-    await Promise.all([
-        loadProductsFromJSON(),
-        fetchAndRenderCategories()
-    ]);
+    // Solo cargar categorías desde endpoint
+    await fetchAndRenderCategories();
     
     initializeSwiper();
     initializeEventListeners();
     
-    // Cargar productos iniciales después de que los datos estén listos
-    console.log('🚀 Iniciando carga de productos...');
-    loadInitialProducts();
+    // Cargar productos iniciales desde endpoints
+    console.log('🚀 Iniciando carga de productos desde endpoints...');
+    await loadInitialProducts();
     
     initializeSearch();
     
@@ -219,7 +184,7 @@ function initializeEventListeners() {
     // Categorías - usar delegación de eventos para categorías dinámicas
     const categoriesWrapper = document.querySelector('.categories-swiper .swiper-wrapper');
     if (categoriesWrapper) {
-        categoriesWrapper.addEventListener('click', function(e) {
+        categoriesWrapper.addEventListener('click', async function(e) {
             const categoryItem = e.target.closest('.category-item');
             if (!categoryItem) return;
             
@@ -230,32 +195,74 @@ function initializeEventListeners() {
             // Agregar clase active a la categoría seleccionada
             categoryItem.classList.add('active');
             
-            // Obtener categoría (usar original si existe, sino usar el slug)
+            // Obtener información de la categoría
             const categorySlug = categoryItem.dataset.category;
             const originalCategory = categoryItem.dataset.originalCategory || categorySlug;
+            const categoryId = categoryItem.dataset.categoryId;
             
-            // Cargar productos de la categoría
-            let products;
-            if (categorySlug === 'all') {
-                products = getProductsByCategory('all');
-            } else {
-                // Buscar por categoría original para mayor precisión
-                products = getProductsByCategory(originalCategory);
-            }
-            
-            renderProducts(products);
-            
-            // Actualizar título de sección
+            // Mostrar estado de carga
             const sectionTitle = document.querySelector('.section-title h2');
             const categoryName = categoryItem.querySelector('span').textContent;
             
             if (categorySlug === 'all') {
                 sectionTitle.textContent = 'Todos los productos';
             } else {
-                sectionTitle.textContent = categoryName;
+                sectionTitle.textContent = `${categoryName} - Cargando...`;
             }
             
-            console.log('✅ Productos cargados para categoría:', categoryName);
+            // Mostrar estado de carga en el grid
+            const grid = document.getElementById('products-grid');
+            if (grid) {
+                grid.innerHTML = `
+                    <div class="no-products-found">
+                        <div class="no-products-content">
+                            <i class="fas fa-spinner fa-spin" style="font-size: 4rem; color: #7AD31C; margin-bottom: 1rem;"></i>
+                            <h3 style="color: #4F4F4D; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600;">Cargando productos...</h3>
+                            <p style="color: #666; margin-bottom: 1.5rem; font-family: 'Inter', sans-serif;">Obteniendo productos de ${categoryName}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            try {
+                // Cargar productos de la categoría
+                let products;
+                if (categorySlug === 'all') {
+                    products = await getProductsByCategory('all');
+                } else {
+                    // Pasar tanto el nombre como el ID de la categoría
+                    products = await getProductsByCategory(originalCategory, categoryId);
+                }
+                
+                renderProducts(products);
+                
+                // Actualizar título de sección (quitar "Cargando...")
+                if (categorySlug === 'all') {
+                    sectionTitle.textContent = 'Todos los productos';
+                } else {
+                    sectionTitle.textContent = categoryName;
+                }
+                
+                console.log('✅ Productos cargados para categoría:', categoryName);
+                
+            } catch (error) {
+                console.error('❌ Error cargando productos:', error);
+                
+                // Mostrar error en el grid
+                if (grid) {
+                    grid.innerHTML = `
+                        <div class="no-products-found">
+                            <div class="no-products-content">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: #dc3545; margin-bottom: 1rem;"></i>
+                                <h3 style="color: #4F4F4D; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600;">Error al cargar productos</h3>
+                                <p style="color: #666; margin-bottom: 1.5rem; font-family: 'Inter', sans-serif;">No se pudieron obtener los productos de ${categoryName}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                sectionTitle.textContent = `${categoryName} - Error`;
+            }
         });
     }
 
@@ -277,28 +284,49 @@ function initializeEventListeners() {
 }
 
 // Función para realizar búsqueda
-function performSearch() {
+async function performSearch() {
     const searchInput = document.querySelector('.search-input');
     const query = searchInput.value.trim();
     const sectionTitle = document.querySelector('.section-title h2');
     
     if (query.length === 0) {
-        loadInitialProducts();
+        await loadInitialProducts();
         // Restaurar título original
         sectionTitle.textContent = 'Todos los productos';
         return;
     }
     
-    const results = searchProducts(query);
-    renderProducts(results);
+    // Mostrar estado de carga
+    sectionTitle.textContent = `Buscando: "${query}"...`;
+    const grid = document.getElementById('products-grid');
+    if (grid) {
+        grid.innerHTML = `
+            <div class="no-products-found">
+                <div class="no-products-content">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 4rem; color: #7AD31C; margin-bottom: 1rem;"></i>
+                    <h3 style="color: #4F4F4D; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600;">Buscando productos...</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem; font-family: 'Inter', sans-serif;">Consultando "${query}" en el sistema</p>
+                </div>
+            </div>
+        `;
+    }
     
-    // Actualizar título
-    sectionTitle.textContent = `Resultados para: "${query}"`;
-    
-    // Remover active de categorías
-    document.querySelectorAll('.category-item').forEach(item => {
-        item.classList.remove('active');
-    });
+    try {
+        const results = await searchProducts(query);
+        renderProducts(results);
+        
+        // Actualizar título
+        sectionTitle.textContent = `Resultados para: "${query}" (${results.length} encontrados)`;
+        
+        // Remover active de categorías
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.classList.remove('active');
+        });
+    } catch (error) {
+        console.error('❌ Error en búsqueda:', error);
+        sectionTitle.textContent = `Error buscando: "${query}"`;
+        renderProducts([]);
+    }
 }
 
 // Función para inicializar búsqueda en tiempo real
@@ -308,19 +336,19 @@ function initializeSearch() {
     
     searchInput.addEventListener('input', function() {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
+        searchTimeout = setTimeout(async () => {
             const query = this.value.trim();
             const sectionTitle = document.querySelector('.section-title h2');
             
             if (query.length === 0) {
-                loadInitialProducts();
+                await loadInitialProducts();
                 // Restaurar título original
                 sectionTitle.textContent = 'Todos los productos';
                 return;
             }
             
             if (query.length >= 2) {
-                performSearch();
+                await performSearch();
             }
         }, 300);
     });

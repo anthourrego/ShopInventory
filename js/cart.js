@@ -2,29 +2,39 @@
 let cart = [];
 
 // Función para agregar producto al carrito
-function addToCart(productId, quantity = 1) {
-    const product = getProductById(productId);
-    if (!product) {
-        console.error('Producto no encontrado');
-        return;
+async function addToCart(productId, quantity = 1) {
+    try {
+        console.log('🛒 Agregando producto al carrito:', productId);
+        const product = await getProductById(productId);
+        if (!product) {
+            console.error('Producto no encontrado');
+            showCartNotification('Error: Producto no encontrado', 'error');
+            return;
+        }
+
+        // Verificar si el producto ya está en el carrito
+        const existingItem = cart.find(item => 
+            item.product.id === productId
+        );
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+            console.log(`➕ Cantidad actualizada: ${existingItem.quantity}`);
+        } else {
+            cart.push({
+                product: product,
+                quantity: quantity
+            });
+            console.log(`🆕 Producto agregado al carrito`);
+        }
+
+        updateCartUI();
+        showCartNotification(`${product.name} agregado al carrito`);
+        
+    } catch (error) {
+        console.error('❌ Error agregando producto al carrito:', error);
+        showCartNotification('Error agregando producto al carrito', 'error');
     }
-
-    // Verificar si el producto ya está en el carrito
-    const existingItem = cart.find(item => 
-        item.product.id === productId
-    );
-
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        cart.push({
-            product: product,
-            quantity: quantity
-        });
-    }
-
-    updateCartUI();
-    showCartNotification(`${product.name} agregado al carrito`);
 }
 
 // Función para remover producto del carrito
@@ -179,14 +189,19 @@ function closeCartModal() {
 }
 
 // Función para mostrar notificación del carrito
-function showCartNotification(message) {
+function showCartNotification(message, type = 'success') {
     // Crear elemento de notificación
     const notification = document.createElement('div');
+    
+    const backgroundColor = type === 'error' 
+        ? 'linear-gradient(135deg, #dc3545, #c82333)' 
+        : 'linear-gradient(135deg, #4F4F4D, #7AD31C)';
+    
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: linear-gradient(135deg, #4F4F4D, #7AD31C);
+        background: ${backgroundColor};
         color: white;
         padding: 15px 20px;
         border-radius: 8px;
