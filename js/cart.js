@@ -213,7 +213,7 @@ function renderCartItems() {
     
     cartItemsContainer.innerHTML = cart.map((item, index) => `
         <div class="cart-item" data-product-id="${item.product.id}">
-            <img src="${item.product.images[0]}" alt="${item.product.name}" class="cart-item-image"
+            <img src="${item.product.FotoURLSmall || (item.product.images && item.product.images[0]) || 'assets/placeholder.svg'}" alt="${item.product.name}" class="cart-item-image"
                  onerror="this.src='assets/placeholder.svg'">
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.product.name}</div>

@@ -214,7 +214,7 @@ function renderProducts(productsToRender) {
         return `
         <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}" ${isOutOfStock ? '' : `onclick="openProductModalWithCache(${product.id}); console.log('Card clicked for product: ${product.id}');"`}>
             <div class="product-images">
-                <img src="${product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg'}" alt="${product.name}" class="product-main-image" 
+                <img src="${product.FotoURLSmall || (product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg')}" alt="${product.name}" class="product-main-image" 
                      onerror="this.src='assets/placeholder.svg'">
                 ${product.images && product.images.length > 1 ? `
                     <img src="${product.images[1]}" alt="${product.name}" class="product-secondary-image"
@@ -286,14 +286,18 @@ function castProductValues(product) {
             // Castear stock como número entero
             stock: parseInt(product.stock) || 0,
             
-            // Castear imágenes como array de strings
+            // Castear imágenes como array de strings (mantenemos compatibilidad con images)
             images: Array.isArray(product.images) 
                 ? product.images.map(img => String(img || '').trim()).filter(img => img)
                 : [],
             
+            // Castear campos de foto específicos del endpoint
+            FotoURLSmall: String(product.FotoURLSmall || '').trim(),
+            FotoURL: String(product.FotoURL || '').trim(),
+            
             // Mantener propiedades adicionales si existen
             ...Object.keys(product).reduce((acc, key) => {
-                if (!['id', 'name', 'price', 'description', 'category', 'images'].includes(key)) {
+                if (!['id', 'name', 'price', 'description', 'category', 'images', 'FotoURLSmall', 'FotoURL'].includes(key)) {
                     acc[key] = product[key];
                 }
                 return acc;
@@ -431,7 +435,15 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
     try {
         const imagesWrapper = document.getElementById('product-images-wrapper');
         if (imagesWrapper) {
-            if (castedProduct.images && castedProduct.images.length > 0) {
+            // Priorizar FotoURL del endpoint, luego images como fallback
+            if (castedProduct.FotoURL) {
+                imagesWrapper.innerHTML = `
+                    <div class="swiper-slide">
+                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
+                             onerror="this.src='assets/placeholder.svg'">
+                    </div>
+                `;
+            } else if (castedProduct.images && castedProduct.images.length > 0) {
                 imagesWrapper.innerHTML = castedProduct.images.map(image => `
                     <div class="swiper-slide">
                         <img src="${image}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
@@ -681,7 +693,15 @@ async function openProductModal(productId) {
     try {
         const imagesWrapper = document.getElementById('product-images-wrapper');
         if (imagesWrapper) {
-            if (castedProduct.images && castedProduct.images.length > 0) {
+            // Priorizar FotoURL del endpoint, luego images como fallback
+            if (castedProduct.FotoURL) {
+                imagesWrapper.innerHTML = `
+                    <div class="swiper-slide">
+                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
+                             onerror="this.src='assets/placeholder.svg'">
+                    </div>
+                `;
+            } else if (castedProduct.images && castedProduct.images.length > 0) {
                 imagesWrapper.innerHTML = castedProduct.images.map(image => `
                     <div class="swiper-slide">
                         <img src="${image}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
