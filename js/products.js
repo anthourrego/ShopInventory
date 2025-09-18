@@ -206,8 +206,13 @@ function renderProducts(productsToRender) {
         return;
     }
     
-    grid.innerHTML = productsToRender.map(product => `
-        <div class="product-card" data-product-id="${product.id}" onclick="openProductModalWithCache(${product.id}); console.log('Card clicked for product: ${product.id}');">
+    grid.innerHTML = productsToRender.map(product => {
+        const stock = parseInt(product.stock) || 0;
+        const isOutOfStock = stock <= 0;
+        const isLowStock = stock > 0 && stock <= 15;
+        
+        return `
+        <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}" ${isOutOfStock ? '' : `onclick="openProductModalWithCache(${product.id}); console.log('Card clicked for product: ${product.id}');"`}>
             <div class="product-images">
                 <img src="${product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg'}" alt="${product.name}" class="product-main-image" 
                      onerror="this.src='assets/placeholder.svg'">
@@ -215,13 +220,22 @@ function renderProducts(productsToRender) {
                     <img src="${product.images[1]}" alt="${product.name}" class="product-secondary-image"
                          onerror="this.style.display='none'">
                 ` : ''}
+                ${isOutOfStock ? '<div class="stock-overlay"><span class="out-of-stock-badge">Sin Stock</span></div>' : ''}
             </div>
             <div class="product-info p-3">
                 <h3 class="product-name">${product.name}</h3>
-                <p class="product-price text-end mb-0 mt-2">${formatPrice(product.price)}</p>
+                <div class="product-footer">
+                    <p class="product-price text-end mb-0">${formatPrice(product.price)}</p>
+                    <div class="stock-info">
+                        ${isOutOfStock ? '<span class="stock-status out-of-stock">Sin stock</span>' : 
+                          isLowStock ? `<span class="stock-status low-stock">Solo ${stock} disponibles</span>` : 
+                          ''}
+                    </div>
+                </div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 // Función para cargar productos iniciales
@@ -269,6 +283,9 @@ function castProductValues(product) {
             // Castear categoría como string
             category: String(product.category || '').trim(),
             
+            // Castear stock como número entero
+            stock: parseInt(product.stock) || 0,
+            
             // Castear imágenes como array de strings
             images: Array.isArray(product.images) 
                 ? product.images.map(img => String(img || '').trim()).filter(img => img)
@@ -287,6 +304,7 @@ function castProductValues(product) {
             id: castedProduct.id,
             name: castedProduct.name,
             price: castedProduct.price,
+            stock: castedProduct.stock,
             imagesCount: castedProduct.images.length
         });
         
@@ -386,11 +404,25 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
     
     // Llenar información básica del producto
     try {
+        const productStock = parseInt(castedProduct.stock) || 0;
+        
         if (modalName) modalName.textContent = castedProduct.name;
         if (modalPrice) modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
         if (modalDescription) modalDescription.textContent = castedProduct.description;
         
-        console.log('✅ Información del producto cargada');
+        // Agregar información de stock
+        const stockInfo = document.getElementById('modal-product-stock');
+        if (stockInfo) {
+            if (productStock <= 0) {
+                stockInfo.innerHTML = '<span class="stock-status out-of-stock">Sin stock</span>';
+            } else if (productStock <= 15) {
+                stockInfo.innerHTML = `<span class="stock-status low-stock">Solo ${productStock} disponibles</span>`;
+            } else {
+                stockInfo.innerHTML = ''; // No mostrar nada para stock alto
+            }
+        }
+        
+        console.log('✅ Información del producto cargada (Stock:', productStock, ')');
     } catch (error) {
         console.error('❌ Error cargando información:', error);
     }
@@ -509,6 +541,68 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
         console.error('❌ Error mostrando modal:', error);
         alert('Error mostrando modal: ' + error.message);
     }
+    
+    // Configurar validaciones de stock después de mostrar el modal
+    configureStockValidation(castedProduct);
+}
+
+// Función para configurar validaciones de stock en el modal
+function configureStockValidation(product) {
+    try {
+        const qtyMinus = document.getElementById('qty-minus');
+        const qtyPlus = document.getElementById('qty-plus');
+        const quantityInput = document.getElementById('quantity');
+        const addToCartBtn = document.getElementById('add-to-cart-modal');
+        const productStock = parseInt(product.stock) || 0;
+        
+        console.log('🏷️ Configurando validaciones de stock:', productStock);
+        
+        // Configurar input de cantidad
+        if (quantityInput) {
+            quantityInput.max = productStock;
+            
+            quantityInput.addEventListener('input', function() {
+                let value = parseInt(this.value) || 1;
+                if (value > productStock) {
+                    this.value = productStock;
+                    console.warn('⚠️ Cantidad ajustada al stock máximo:', productStock);
+                } else if (value < 1) {
+                    this.value = 1;
+                }
+            });
+        }
+        
+        // Configurar botón plus
+        if (qtyPlus && quantityInput) {
+            qtyPlus.onclick = function() {
+                let currentValue = parseInt(quantityInput.value) || 1;
+                if (currentValue < productStock) {
+                    quantityInput.value = currentValue + 1;
+                } else {
+                    console.warn('⚠️ No se puede agregar más, stock máximo alcanzado');
+                }
+            };
+        }
+        
+        // Deshabilitar elementos si no hay stock
+        if (productStock <= 0) {
+            if (qtyMinus) qtyMinus.disabled = true;
+            if (qtyPlus) qtyPlus.disabled = true;
+            if (quantityInput) quantityInput.disabled = true;
+            
+            if (addToCartBtn) {
+                addToCartBtn.disabled = true;
+                addToCartBtn.textContent = 'Sin stock';
+                addToCartBtn.style.background = '#6c757d';
+                addToCartBtn.style.cursor = 'not-allowed';
+            }
+        }
+        
+        console.log('✅ Validaciones de stock configuradas (Stock:', productStock, ')');
+        
+    } catch (error) {
+        console.error('❌ Error configurando validaciones de stock:', error);
+    }
 }
 
 // Función para abrir modal de producto (método original - mantenido para compatibilidad)
@@ -560,12 +654,25 @@ async function openProductModal(productId) {
     
     // Llenar información básica del producto
     try {
+        const productStock = parseInt(castedProduct.stock) || 0;
         
         if (modalName) modalName.textContent = castedProduct.name;
         if (modalPrice) modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
         if (modalDescription) modalDescription.textContent = castedProduct.description;
         
-        console.log('✅ Información del producto cargada');
+        // Agregar información de stock
+        const stockInfo = document.getElementById('modal-product-stock');
+        if (stockInfo) {
+            if (productStock <= 0) {
+                stockInfo.innerHTML = '<span class="stock-status out-of-stock">Sin stock</span>';
+            } else if (productStock <= 15) {
+                stockInfo.innerHTML = `<span class="stock-status low-stock">Solo ${productStock} disponibles</span>`;
+            } else {
+                stockInfo.innerHTML = ''; // No mostrar nada para stock alto
+            }
+        }
+        
+        console.log('✅ Información del producto cargada (Stock:', productStock, ')');
     } catch (error) {
         console.error('❌ Error cargando información:', error);
     }
@@ -726,5 +833,6 @@ window.openProductModal = openProductModal;
 window.openProductModalWithCache = openProductModalWithCache;
 window.closeProductModal = closeProductModal;
 window.castProductValues = castProductValues;
+window.configureStockValidation = configureStockValidation;
 window.addToCache = addToCache;
 window.getFromCache = getFromCache;

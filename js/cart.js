@@ -12,20 +12,47 @@ async function addToCart(productId, quantity = 1) {
             return;
         }
 
+        // Validar stock del producto
+        const productStock = parseInt(product.stock) || 0;
+        console.log('📦 Stock disponible:', productStock);
+        
+        if (productStock <= 0) {
+            console.warn('⚠️ Producto sin stock');
+            showCartNotification(`${product.name} está agotado`, 'error');
+            return;
+        }
+
         // Verificar si el producto ya está en el carrito
         const existingItem = cart.find(item => 
-            item.product.id === productId
+            parseInt(item.product.id) === parseInt(productId)
         );
+
+        let totalQuantityInCart = quantity;
+        if (existingItem) {
+            totalQuantityInCart = existingItem.quantity + quantity;
+        }
+
+        // Validar que la cantidad total no exceda el stock
+        if (totalQuantityInCart > productStock) {
+            console.warn('⚠️ Cantidad solicitada excede el stock disponible');
+            const availableQuantity = productStock - (existingItem ? existingItem.quantity : 0);
+            if (availableQuantity <= 0) {
+                showCartNotification(`Ya tienes todo el stock disponible de ${product.name} en tu carrito`, 'error');
+                return;
+            }
+            showCartNotification(`Solo puedes agregar ${availableQuantity} más de ${product.name} (Stock: ${productStock})`, 'error');
+            return;
+        }
 
         if (existingItem) {
             existingItem.quantity += quantity;
-            console.log(`➕ Cantidad actualizada: ${existingItem.quantity}`);
+            console.log(`➕ Cantidad actualizada: ${existingItem.quantity} (Stock: ${productStock})`);
         } else {
             cart.push({
                 product: product,
                 quantity: quantity
             });
-            console.log(`🆕 Producto agregado al carrito`);
+            console.log(`🆕 Producto agregado al carrito (Stock: ${productStock})`);
         }
 
         updateCartUI();
@@ -75,8 +102,23 @@ function updateCartQuantity(productId, newQuantity) {
             console.log('⚠️ Cantidad <= 0, eliminando producto del carrito');
             removeFromCart(productId);
         } else {
+            // Validar stock antes de actualizar cantidad
+            const productStock = parseInt(item.product.stock) || 0;
+            
+            if (newQuantity > productStock) {
+                console.warn('⚠️ Cantidad solicitada excede el stock disponible');
+                showCartNotification(`Solo hay ${productStock} unidades disponibles de ${item.product.name}`, 'error');
+                
+                // Mantener la cantidad actual si excede el stock
+                const quantityInput = document.querySelector(`input[data-product-id="${productId}"]`);
+                if (quantityInput) {
+                    quantityInput.value = item.quantity;
+                }
+                return;
+            }
+            
             item.quantity = newQuantity;
-            console.log('✅ Cantidad actualizada:', item.product.name, 'cantidad:', newQuantity);
+            console.log('✅ Cantidad actualizada:', item.product.name, 'cantidad:', newQuantity, 'stock:', productStock);
             updateCartUI();
         }
     } else {
