@@ -156,17 +156,18 @@ function updateCartUI() {
     
     renderCartItems();
     
-    // Actualizar estado del botón de checkout
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
+    // Actualizar estado del botón de WhatsApp
+    const whatsappOrderBtn = document.getElementById('whatsapp-order-btn');
+    
+    if (whatsappOrderBtn) {
         if (itemCount === 0) {
-            checkoutBtn.disabled = true;
-            checkoutBtn.classList.add('disabled');
-            checkoutBtn.textContent = 'Carrito vacío';
+            whatsappOrderBtn.disabled = true;
+            whatsappOrderBtn.classList.add('disabled');
+            whatsappOrderBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Carrito vacío';
         } else {
-            checkoutBtn.disabled = false;
-            checkoutBtn.classList.remove('disabled');
-            checkoutBtn.textContent = 'Enviar pedido por WhatsApp';
+            whatsappOrderBtn.disabled = false;
+            whatsappOrderBtn.classList.remove('disabled');
+            whatsappOrderBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Solicitar por WhatsApp';
         }
     }
     
@@ -529,3 +530,4 @@ window.showCartModal = showCartModal;
 window.closeCartModal = closeCartModal;
 window.sendWhatsAppOrder = sendWhatsAppOrder;
 window.clearCart = clearCart;
+window.showCartNotification = showCartNotification;

@@ -56,7 +56,7 @@ function renderCategories(categories) {
             <div class="swiper-slide">
                 <div class="category-item" data-category="${categorySlug}" data-original-category="${categoryName}" data-category-id="${categoryId}">
                     <div class="category-icon">
-                        <i class="${config.icon}"></i>
+                        <img src="assets/default.webp" alt="${config.display}" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <span>${config.display}</span>
                 </div>

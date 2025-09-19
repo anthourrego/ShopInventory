@@ -28,6 +28,19 @@ const API_CONFIG = {
     }
 };
 
+// Configuración de WhatsApp para cotizaciones
+const WHATSAPP_CONFIG = {
+    // Número de WhatsApp comercial (incluir código de país sin +)
+    BUSINESS_NUMBER: '573188732564', // CAMBIAR POR TU NÚMERO REAL
+    
+    // Mensaje de bienvenida personalizado
+    WELCOME_MESSAGE: '¡Hola! Te saluda el equipo de nuestra tienda 🛍️',
+    
+    // Configuración adicional
+    AUTO_OPEN: true, // Abrir WhatsApp automáticamente después del envío
+    CLEAR_CART_AFTER_QUOTE: true // Limpiar carrito automáticamente después de enviar cotización
+};
+
 /**
  * Construye una URL completa para la API
  * @param {string} endpoint - El endpoint a usar (usar API_CONFIG.ENDPOINTS)
@@ -72,6 +85,7 @@ async function apiRequest(url, options = {}) {
 // Hacer disponible globalmente
 if (typeof window !== 'undefined') {
     window.API_CONFIG = API_CONFIG;
+    window.WHATSAPP_CONFIG = WHATSAPP_CONFIG;
     window.buildApiUrl = buildApiUrl;
     window.apiRequest = apiRequest;
 }
@@ -80,6 +94,7 @@ if (typeof window !== 'undefined') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         API_CONFIG,
+        WHATSAPP_CONFIG,
         buildApiUrl,
         apiRequest
     };

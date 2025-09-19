@@ -181,8 +181,8 @@ body {
 }
 
 .category-icon {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background: #f8f9fa;
     display: flex;
@@ -831,8 +831,8 @@ body {
     }
     
     .category-icon {
-        width: 40px;
-        height: 40px;
+        width: 80px;
+        height: 80px;
         font-size: 16px;
     }
     
@@ -1027,4 +1027,458 @@ body {
 
 .product-images {
     position: relative;
+}
+
+/* ===============================================
+   ESTILOS PARA FORMULARIO DE COTIZACIÓN
+   =============================================== */
+
+/* Modal de cotización */
+#quotation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#quotation-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.quotation-form {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: translateY(30px);
+    transition: transform 0.3s ease;
+}
+
+#quotation-modal.show .quotation-form {
+    transform: translateY(0);
+}
+
+.quotation-form .modal-header {
+    background: linear-gradient(135deg, #4F4F4D, #7AD31C);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quotation-form .modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.quotation-form .close-modal {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.quotation-form .close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.quotation-form .modal-body {
+    padding: 30px;
+    max-height: calc(90vh - 80px);
+    overflow-y: auto;
+}
+
+/* Grupos de formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4F4F4D;
+    font-size: 0.95rem;
+}
+
+.required {
+    color: #dc3545;
+    margin-left: 2px;
+}
+
+/* Inputs con iconos */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    color: #7AD31C;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.input-with-icon input,
+.input-with-icon select,
+.input-with-icon textarea {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.input-with-icon input:focus,
+.input-with-icon select:focus,
+.input-with-icon textarea:focus {
+    outline: none;
+    border-color: #7AD31C;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(122, 211, 28, 0.1);
+}
+
+/* Contenedor mejorado para WhatsApp - Estilo similar al email */
+.whatsapp-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-input-container:focus-within {
+    border-color: #7AD31C;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(122, 211, 28, 0.1);
+}
+
+.whatsapp-input-container .input-help {
+    margin-top: 6px;
+}
+
+.whatsapp-input-container .input-help small {
+    color: #6c757d;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.whatsapp-icon {
+    position: absolute;
+    left: 15px;
+    color: #7AD31C;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.country-selector {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 15px 8px 15px 45px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.country-code {
+    background: transparent;
+    border: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.country-code:focus {
+    outline: none;
+}
+
+.whatsapp-input-container input[type="tel"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 15px 15px 15px 0;
+    font-size: 1rem;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+
+
+/* Estilos para validación de WhatsApp */
+.whatsapp-input-container.valid {
+    border-color: #28a745;
+    background-color: #f8fff9;
+}
+
+.whatsapp-input-container.invalid {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+}
+
+.whatsapp-input-container.valid:focus-within {
+    border-color: #28a745;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.whatsapp-input-container.invalid:focus-within {
+    border-color: #dc3545;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+/* Mensajes de validación */
+.whatsapp-validation {
+    margin-top: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.whatsapp-validation.valid {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.whatsapp-validation.invalid {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Animación para los mensajes de validación */
+.whatsapp-validation {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Input con prefijo (legacy - mantenido para compatibilidad) */
+.input-with-prefix {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+/* Textarea específico */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Inputs con error */
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #dc3545;
+    background: #fff5f5;
+}
+
+/* Botón de WhatsApp */
+.whatsapp-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    margin-top: 20px;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn i {
+    font-size: 1.3rem;
+}
+
+/* Botón de WhatsApp en el carrito */
+.whatsapp-order-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.whatsapp-order-btn:hover:not(.disabled) {
+    background: linear-gradient(135deg, #128C7E, #0ea572);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-order-btn.disabled {
+    background: #6c757d;
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.whatsapp-order-btn i {
+    font-size: 1.2rem;
+}
+
+/* Acciones del carrito */
+.cart-actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+/* Responsive para formulario */
+@media (max-width: 768px) {
+    .quotation-form {
+        width: 95%;
+        max-height: 95vh;
+        margin: 2.5vh 0;
+    }
+    
+    .quotation-form .modal-header {
+        padding: 15px;
+    }
+    
+    .quotation-form .modal-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .quotation-form .modal-body {
+        padding: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .input-with-icon input,
+    .input-with-icon select,
+    .input-with-icon textarea {
+        padding: 12px 12px 12px 40px;
+        font-size: 0.95rem;
+    }
+    
+    .country-code {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+        min-width: 70px;
+    }
+    
+    .whatsapp-btn {
+        padding: 15px 25px;
+        font-size: 1rem;
+    }
+    
+    /* Ajustes para WhatsApp input en móvil */
+    .whatsapp-input-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .country-selector {
+        padding: 12px 8px 12px 40px;
+        min-width: auto;
+        width: 100%;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .country-code {
+        font-size: 0.85rem;
+        gap: 4px;
+    }
+    
+    .whatsapp-input-container input[type="tel"] {
+        padding: 12px 15px 12px 40px;
+        font-size: 0.95rem;
+    }
+    
+    .whatsapp-icon {
+        left: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .whatsapp-order-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .whatsapp-order-btn i {
+        font-size: 1.1rem;
+    }
 }

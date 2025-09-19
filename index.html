@@ -77,7 +77,7 @@
                     <div class="swiper-slide">
                         <div class="category-item active" data-category="all">
                             <div class="category-icon">
-                                <i class="fas fa-th-large"></i>
+                                <img src="assets/default.webp" alt="Todos" style="width: 100%; height: 100%; object-fit: contain;">
                             </div>
                             <span>Todos</span>
                         </div>
@@ -135,7 +135,12 @@
                 <div class="cart-total-section">
                     <strong>Total: <span id="cart-total-amount">$ 0</span></strong>
                 </div>
-                <button class="checkout-btn" id="checkout-btn">Confirmar Pedido</button>
+                <div class="cart-actions">
+                    <button class="whatsapp-order-btn" id="whatsapp-order-btn" onclick="openQuotationModal()">
+                        <i class="fab fa-whatsapp"></i>
+                        Solicitar por WhatsApp
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -178,6 +183,156 @@
         </div>
     </div>
 
+    <!-- Modal de Cotización -->
+    <div class="modal" id="quotation-modal">
+        <div class="modal-content quotation-form">
+            <div class="modal-header">
+                <h2>Solicitar Cotización</h2>
+                <span class="close-modal" onclick="closeQuotationModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="quotation-form">
+                    <!-- WhatsApp -->
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp<span class="required">*</span></label>
+                        <div class="whatsapp-input-container">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i>
+                            <div class="country-selector">
+                                <select id="country-code" class="country-code">
+                                    <option value="+57" data-flag="🇨🇴">🇨🇴 +57</option>
+                                    <option value="+1" data-flag="🇺🇸">🇺🇸 +1</option>
+                                    <option value="+52" data-flag="🇲🇽">🇲🇽 +52</option>
+                                    <option value="+34" data-flag="🇪🇸">🇪🇸 +34</option>
+                                    <option value="+593" data-flag="🇪🇨">🇪🇨 +593</option>
+                                    <option value="+51" data-flag="🇵🇪">🇵🇪 +51</option>
+                                    <option value="+58" data-flag="🇻🇪">🇻🇪 +58</option>
+                                    <option value="+507" data-flag="🇵🇦">🇵🇦 +507</option>
+                                </select>
+                            </div>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="300 123 4567" maxlength="15" required>
+                        </div>
+                        <div class="input-help">
+                            <small>Ingresa tu número sin el código de país</small>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email<span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" placeholder="Escriba su email" required>
+                        </div>
+                    </div>
+
+                    <!-- Nombres y Apellidos -->
+                    <div class="form-group">
+                        <label for="fullname">Nombres y Apellidos<span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="fullname" name="fullname" placeholder="Escriba su nombre completo" required>
+                        </div>
+                    </div>
+
+                    <!-- Departamento -->
+                    <div class="form-group">
+                        <label for="department">Departamento<span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <select id="department" name="department" required>
+                                <option value="">--</option>
+                                <option value="Antioquia">Antioquia</option>
+                                <option value="Atlántico">Atlántico</option>
+                                <option value="Bogotá D.C.">Bogotá D.C.</option>
+                                <option value="Bolívar">Bolívar</option>
+                                <option value="Boyacá">Boyacá</option>
+                                <option value="Caldas">Caldas</option>
+                                <option value="Caquetá">Caquetá</option>
+                                <option value="Casanare">Casanare</option>
+                                <option value="Cauca">Cauca</option>
+                                <option value="Cesar">Cesar</option>
+                                <option value="Chocó">Chocó</option>
+                                <option value="Córdoba">Córdoba</option>
+                                <option value="Cundinamarca">Cundinamarca</option>
+                                <option value="Guainía">Guainía</option>
+                                <option value="Guaviare">Guaviare</option>
+                                <option value="Huila">Huila</option>
+                                <option value="La Guajira">La Guajira</option>
+                                <option value="Magdalena">Magdalena</option>
+                                <option value="Meta">Meta</option>
+                                <option value="Nariño">Nariño</option>
+                                <option value="Norte de Santander">Norte de Santander</option>
+                                <option value="Putumayo">Putumayo</option>
+                                <option value="Quindío">Quindío</option>
+                                <option value="Risaralda">Risaralda</option>
+                                <option value="San Andrés y Providencia">San Andrés y Providencia</option>
+                                <option value="Santander">Santander</option>
+                                <option value="Sucre">Sucre</option>
+                                <option value="Tolima">Tolima</option>
+                                <option value="Valle del Cauca">Valle del Cauca</option>
+                                <option value="Vaupés">Vaupés</option>
+                                <option value="Vichada">Vichada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Ciudad -->
+                    <div class="form-group">
+                        <label for="city">Ciudad<span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-city"></i>
+                            <select id="city" name="city" required>
+                                <option value="">--</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Barrio -->
+                    <div class="form-group">
+                        <label for="neighborhood">Urb. o Barrio<span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-home"></i>
+                            <input type="text" id="neighborhood" name="neighborhood" placeholder="Escriba la Urb. o Barrio" required>
+                        </div>
+                    </div>
+
+                    <!-- Dirección -->
+                    <div class="form-group">
+                        <label for="address">Dirección de envío<span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <textarea id="address" name="address" placeholder="Escriba la dirección de envío" rows="3" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Forma de pago -->
+                    <div class="form-group">
+                        <label for="payment-method">Forma de pago<span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <select id="payment-method" name="payment-method" required>
+                                <option value="">--</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                                <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                                <option value="Tarjeta de Débito">Tarjeta de Débito</option>
+                                <option value="PSE">PSE</option>
+                                <option value="Nequi">Nequi</option>
+                                <option value="Daviplata">Daviplata</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Botón de envío -->
+                    <button type="submit" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Cotizar por whatsapp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
 
@@ -187,6 +342,7 @@
     <script src="js/config.js"></script>
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/quotation.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
