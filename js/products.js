@@ -212,24 +212,26 @@ function renderProducts(productsToRender) {
         const isLowStock = stock > 0 && stock <= 15;
         
         return `
-        <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}" ${isOutOfStock ? '' : `onclick="openProductModalWithCache(${product.id}); console.log('Card clicked for product: ${product.id}');"`}>
-            <div class="product-images">
-                <img src="${product.FotoURLSmall || (product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg')}" alt="${product.name}" class="product-main-image" 
-                     onerror="this.src='assets/placeholder.svg'">
-                ${product.images && product.images.length > 1 ? `
-                    <img src="${product.images[1]}" alt="${product.name}" class="product-secondary-image"
-                         onerror="this.style.display='none'">
-                ` : ''}
-                ${isOutOfStock ? '<div class="stock-overlay"><span class="out-of-stock-badge">Sin Stock</span></div>' : ''}
-            </div>
-            <div class="product-info p-3">
-                <h3 class="product-name">${product.name}</h3>
-                <div class="product-footer">
-                    <p class="product-price text-end mb-0">${formatPrice(product.price)}</p>
-                    <div class="stock-info">
-                        ${isOutOfStock ? '<span class="stock-status out-of-stock">Sin stock</span>' : 
-                          isLowStock ? `<span class="stock-status low-stock">${stock} disponibles</span>` : 
-                          ''}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}" ${isOutOfStock ? '' : `onclick="openProductModalWithCache(${product.id}); console.log('Card clicked for product: ${product.id}');"`}>
+                <div class="product-images">
+                    <img src="${product.FotoURLSmall || (product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg')}" alt="${product.name}" class="product-main-image" 
+                         onerror="this.src='assets/placeholder.svg'">
+                    ${product.images && product.images.length > 1 ? `
+                        <img src="${product.images[1]}" alt="${product.name}" class="product-secondary-image"
+                             onerror="this.style.display='none'">
+                    ` : ''}
+                    ${isOutOfStock ? '<div class="stock-overlay"><span class="out-of-stock-badge">Sin Stock</span></div>' : ''}
+                </div>
+                <div class="product-info p-3">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-footer">
+                        <p class="product-price text-end mb-0">${formatPrice(product.price)}</p>
+                        <div class="stock-info">
+                            ${isOutOfStock ? '<span class="stock-status out-of-stock">Sin stock</span>' : 
+                              isLowStock ? `<span class="stock-status low-stock">${stock} disponibles</span>` : 
+                              ''}
+                        </div>
                     </div>
                 </div>
             </div>
