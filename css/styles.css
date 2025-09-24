@@ -365,11 +365,12 @@ body {
         width: 100%;
         padding: 1rem !important;
         box-sizing: border-box;
-        min-height: 220px;
+        min-height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
     }
+    
     .add-to-cart-btn {
         width: 100%;
         margin-top: 1rem;
@@ -388,16 +389,6 @@ body {
         font-size: 2rem;
         z-index: 10;
         position: absolute;
-    }
-
-    .product-info.p-3 {
-        width: 100%;
-        padding: 1rem !important;
-        box-sizing: border-box;
-        min-height: 220px;
-        display: flex;
-        flex-direction: column;
-        /* justify-content: flex-end; */ /* Se elimina para que el contenido fluya desde arriba */
     }
 
     #modal-product-name {
@@ -1500,5 +1491,77 @@ textarea {
     
     .whatsapp-order-btn i {
         font-size: 1.1rem;
+    }
+}
+
+/* Optimizaciones adicionales para móviles - mejor aprovechamiento del espacio */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    .products {
+        padding-bottom: 100px; /* Reducir padding inferior */
+    }
+    
+    .product-card {
+        border-radius: 12px; /* Bordes más pequeños */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra más sutil */
+    }
+    
+    .product-images {
+        height: 140px; /* Altura mucho más compacta para aprovechar espacio */
+    }
+    
+    .product-info {
+        padding: 8px 12px 12px 12px !important; /* Padding superior muy reducido, lateral y inferior normales */
+    }
+    
+    .product-name {
+        font-size: 0.9rem;
+        line-height: 1.2;
+        margin-bottom: 2px !important; /* Margen muy reducido entre nombre y precio */
+    }
+    
+    .product-price {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+    }
+    
+    .availability-info {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+}
+
+/* Optimizaciones para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .container {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+    
+    .product-images {
+        height: 130px; /* Aún más compacto en pantallas muy pequeñas */
+    }
+    
+    .product-info {
+        padding: 6px 10px 10px 10px !important; /* Padding superior mínimo */
+    }
+    
+    .product-name {
+        font-size: 0.85rem;
+        margin-bottom: 1px !important; /* Margen mínimo */
+    }
+    
+    .product-price {
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+    
+    .availability-info {
+        font-size: 0.7rem;
+        padding: 2px 6px;
     }
 }
