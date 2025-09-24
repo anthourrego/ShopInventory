@@ -228,7 +228,7 @@ function renderProducts(productsToRender) {
                     <p class="product-price text-end mb-0">${formatPrice(product.price)}</p>
                     <div class="stock-info">
                         ${isOutOfStock ? '<span class="stock-status out-of-stock">Sin stock</span>' : 
-                          isLowStock ? `<span class="stock-status low-stock">Solo ${stock} disponibles</span>` : 
+                          isLowStock ? `<span class="stock-status low-stock">${stock} disponibles</span>` : 
                           ''}
                     </div>
                 </div>
@@ -411,18 +411,24 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
         const productStock = parseInt(castedProduct.stock) || 0;
         
         if (modalName) modalName.textContent = castedProduct.name;
-        if (modalPrice) modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
+        if (modalPrice) {
+            modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
+            modalPrice.style.fontWeight = 'bold';
+        }
         if (modalDescription) modalDescription.textContent = castedProduct.description;
         
-        // Agregar información de stock
-        const stockInfo = document.getElementById('modal-product-stock');
-        if (stockInfo) {
+        // Agregar información de disponibilidad
+        const availabilityInfo = document.getElementById('modal-availability-info');
+        if (availabilityInfo) {
             if (productStock <= 0) {
-                stockInfo.innerHTML = '<span class="stock-status out-of-stock">Sin stock</span>';
+                availabilityInfo.textContent = 'Agotado';
+                availabilityInfo.className = 'availability-info out-of-stock';
             } else if (productStock <= 15) {
-                stockInfo.innerHTML = `<span class="stock-status low-stock">Solo ${productStock} disponibles</span>`;
+                availabilityInfo.textContent = `${productStock} disponibles`;
+                availabilityInfo.className = 'availability-info low-stock';
             } else {
-                stockInfo.innerHTML = ''; // No mostrar nada para stock alto
+                availabilityInfo.textContent = 'Disponible';
+                availabilityInfo.className = 'availability-info available';
             }
         }
         
@@ -604,7 +610,7 @@ function configureStockValidation(product) {
             
             if (addToCartBtn) {
                 addToCartBtn.disabled = true;
-                addToCartBtn.textContent = 'Sin stock';
+                addToCartBtn.textContent = 'No disponible';
                 addToCartBtn.style.background = '#6c757d';
                 addToCartBtn.style.cursor = 'not-allowed';
             }
@@ -669,18 +675,24 @@ async function openProductModal(productId) {
         const productStock = parseInt(castedProduct.stock) || 0;
         
         if (modalName) modalName.textContent = castedProduct.name;
-        if (modalPrice) modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
+        if (modalPrice) {
+            modalPrice.textContent = '$' + castedProduct.price.toLocaleString('es-CO');
+            modalPrice.style.fontWeight = 'bold';
+        }
         if (modalDescription) modalDescription.textContent = castedProduct.description;
         
-        // Agregar información de stock
-        const stockInfo = document.getElementById('modal-product-stock');
-        if (stockInfo) {
+        // Agregar información de disponibilidad
+        const availabilityInfo = document.getElementById('modal-availability-info');
+        if (availabilityInfo) {
             if (productStock <= 0) {
-                stockInfo.innerHTML = '<span class="stock-status out-of-stock">Sin stock</span>';
+                availabilityInfo.textContent = 'Agotado';
+                availabilityInfo.className = 'availability-info out-of-stock';
             } else if (productStock <= 15) {
-                stockInfo.innerHTML = `<span class="stock-status low-stock">Solo ${productStock} disponibles</span>`;
+                availabilityInfo.textContent = `${productStock} disponibles`;
+                availabilityInfo.className = 'availability-info low-stock';
             } else {
-                stockInfo.innerHTML = ''; // No mostrar nada para stock alto
+                availabilityInfo.textContent = 'Disponible';
+                availabilityInfo.className = 'availability-info available';
             }
         }
         

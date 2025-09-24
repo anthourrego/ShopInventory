@@ -168,12 +168,20 @@
                         <p id="modal-product-description"></p>
                     </div>
                     <div class="product-options">
-                        <div class="quantity-selector">
-                            <label>Cantidad:</label>
-                            <div class="quantity-controls">
-                                <button class="qty-btn" id="qty-minus">-</button>
-                                <input type="number" id="quantity" value="1" min="1">
-                                <button class="qty-btn" id="qty-plus">+</button>
+                        <div class="options-row">
+                            <div class="quantity-selector">
+                                <label>Cantidad:</label>
+                                <div class="quantity-controls">
+                                    <button class="qty-btn" id="qty-minus">-</button>
+                                    <input type="number" id="quantity" value="1" min="1">
+                                    <button class="qty-btn" id="qty-plus">+</button>
+                                </div>
+                            </div>
+                            <div class="availability-selector">
+                                <label>Disponibilidad:</label>
+                                <div class="availability-info" id="modal-availability-info">
+                                    <!-- Información de disponibilidad -->
+                                </div>
                             </div>
                         </div>
                     </div>

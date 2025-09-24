@@ -107,7 +107,7 @@ function updateCartQuantity(productId, newQuantity) {
             
             if (newQuantity > productStock) {
                 console.warn('⚠️ Cantidad solicitada excede el stock disponible');
-                showCartNotification(`Solo hay ${productStock} unidades disponibles de ${item.product.name}`, 'error');
+                showCartNotification(`Hay ${productStock} unidades disponibles de ${item.product.name}`, 'error');
                 
                 // Mantener la cantidad actual si excede el stock
                 const quantityInput = document.querySelector(`input[data-product-id="${productId}"]`);
