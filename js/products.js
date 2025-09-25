@@ -447,22 +447,20 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
             if (castedProduct.FotoURL) {
                 imagesWrapper.innerHTML = `
                     <div class="swiper-slide">
-                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
-                             onerror="this.src='assets/placeholder.svg'">
+                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
                     </div>
                 `;
             } else if (castedProduct.images && castedProduct.images.length > 0) {
                 imagesWrapper.innerHTML = castedProduct.images.map(image => `
                     <div class="swiper-slide">
-                        <img src="${image}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
-                             onerror="this.src='assets/placeholder.svg'">
+                        <img src="${image}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
                     </div>
                 `).join('');
             } else {
                 // Si no hay imágenes, usar placeholder por defecto
                 imagesWrapper.innerHTML = `
                     <div class="swiper-slide">
-                        <img src="assets/placeholder.svg" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="assets/placeholder.svg" alt="${castedProduct.name}">
                     </div>
                 `;
             }
@@ -711,22 +709,20 @@ async function openProductModal(productId) {
             if (castedProduct.FotoURL) {
                 imagesWrapper.innerHTML = `
                     <div class="swiper-slide">
-                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
-                             onerror="this.src='assets/placeholder.svg'">
+                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
                     </div>
                 `;
             } else if (castedProduct.images && castedProduct.images.length > 0) {
                 imagesWrapper.innerHTML = castedProduct.images.map(image => `
                     <div class="swiper-slide">
-                        <img src="${image}" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;" 
-                             onerror="this.src='assets/placeholder.svg'">
+                        <img src="${image}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
                     </div>
                 `).join('');
             } else {
                 // Si no hay imágenes, usar placeholder por defecto
                 imagesWrapper.innerHTML = `
                     <div class="swiper-slide">
-                        <img src="assets/placeholder.svg" alt="${castedProduct.name}" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="assets/placeholder.svg" alt="${castedProduct.name}">
                     </div>
                 `;
             }
