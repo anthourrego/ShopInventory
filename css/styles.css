@@ -396,6 +396,7 @@ body {
         overflow-y: auto; /* Agrega la barra de scroll SOLO cuando es necesario */
         margin-bottom: 1rem; /* Añade un espacio antes de las opciones de cantidad */
         padding-right: 10px; /* Espacio para que la barra de scroll no tape el texto */
+        white-space: pre-line; /* Respeta saltos de línea \n y \r */
     }
 
     .product-options {
@@ -671,7 +672,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f8f9fa;
+    background: #fff;
 }
 
 .product-main-image-modal {
@@ -705,6 +706,7 @@ body {
     margin-bottom: 25px;
     line-height: 1.6;
     color: #666;
+    white-space: pre-line; /* Respeta saltos de línea \n y \r */
 }
 
 .product-options {
