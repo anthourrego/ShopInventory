@@ -829,12 +829,18 @@ body {
     }
     
     .options-row {
-        flex-direction: column;
+        flex-direction: row;
         gap: 15px;
+        align-items: flex-start;
     }
     
-    .quantity-selector,
+    .quantity-selector {
+        flex: 0 0 60%;
+        margin-bottom: 15px;
+    }
+    
     .availability-selector {
+        flex: 0 0 35%;
         margin-bottom: 15px;
     }
     
