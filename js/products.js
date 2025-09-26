@@ -439,35 +439,32 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
         console.error('❌ Error cargando información:', error);
     }
     
-    // Configurar imágenes
+    // Configurar imagen del modal
     try {
-        const imagesWrapper = document.getElementById('product-images-wrapper');
-        if (imagesWrapper) {
+        const modalImage = document.getElementById('product-modal-image');
+        if (modalImage) {
             // Priorizar FotoURL del endpoint, luego images como fallback
             if (castedProduct.FotoURL) {
-                imagesWrapper.innerHTML = `
-                    <div class="swiper-slide">
-                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
-                    </div>
-                `;
+                modalImage.src = castedProduct.FotoURL;
+                modalImage.alt = castedProduct.name;
             } else if (castedProduct.images && castedProduct.images.length > 0) {
-                imagesWrapper.innerHTML = castedProduct.images.map(image => `
-                    <div class="swiper-slide">
-                        <img src="${image}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
-                    </div>
-                `).join('');
+                modalImage.src = castedProduct.images[0]; // Usar la primera imagen
+                modalImage.alt = castedProduct.name;
             } else {
                 // Si no hay imágenes, usar placeholder por defecto
-                imagesWrapper.innerHTML = `
-                    <div class="swiper-slide">
-                        <img src="assets/placeholder.svg" alt="${castedProduct.name}">
-                    </div>
-                `;
+                modalImage.src = 'assets/placeholder.svg';
+                modalImage.alt = castedProduct.name;
             }
-            console.log('✅ Imágenes configuradas');
+            
+            // Configurar el manejo de error de imagen
+            modalImage.onerror = function() {
+                this.src = 'assets/placeholder.svg';
+            };
+            
+            console.log('✅ Imagen del modal configurada');
         }
     } catch (error) {
-        console.error('❌ Error cargando imágenes:', error);
+        console.error('❌ Error cargando imagen del modal:', error);
     }
     
     // Configurar botón de agregar al carrito
@@ -701,35 +698,32 @@ async function openProductModal(productId) {
         console.error('❌ Error cargando información:', error);
     }
     
-    // Configurar imágenes
+    // Configurar imagen del modal
     try {
-        const imagesWrapper = document.getElementById('product-images-wrapper');
-        if (imagesWrapper) {
+        const modalImage = document.getElementById('product-modal-image');
+        if (modalImage) {
             // Priorizar FotoURL del endpoint, luego images como fallback
             if (castedProduct.FotoURL) {
-                imagesWrapper.innerHTML = `
-                    <div class="swiper-slide">
-                        <img src="${castedProduct.FotoURL}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
-                    </div>
-                `;
+                modalImage.src = castedProduct.FotoURL;
+                modalImage.alt = castedProduct.name;
             } else if (castedProduct.images && castedProduct.images.length > 0) {
-                imagesWrapper.innerHTML = castedProduct.images.map(image => `
-                    <div class="swiper-slide">
-                        <img src="${image}" alt="${castedProduct.name}" onerror="this.src='assets/placeholder.svg'">
-                    </div>
-                `).join('');
+                modalImage.src = castedProduct.images[0]; // Usar la primera imagen
+                modalImage.alt = castedProduct.name;
             } else {
                 // Si no hay imágenes, usar placeholder por defecto
-                imagesWrapper.innerHTML = `
-                    <div class="swiper-slide">
-                        <img src="assets/placeholder.svg" alt="${castedProduct.name}">
-                    </div>
-                `;
+                modalImage.src = 'assets/placeholder.svg';
+                modalImage.alt = castedProduct.name;
             }
-            console.log('✅ Imágenes configuradas');
+            
+            // Configurar el manejo de error de imagen
+            modalImage.onerror = function() {
+                this.src = 'assets/placeholder.svg';
+            };
+            
+            console.log('✅ Imagen del modal configurada');
         }
     } catch (error) {
-        console.error('❌ Error cargando imágenes:', error);
+        console.error('❌ Error cargando imagen del modal:', error);
     }
     
     // Configurar botón de agregar al carrito

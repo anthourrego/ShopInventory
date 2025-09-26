@@ -1,5 +1,5 @@
 // Variables globales
-let bannerSwiper, categoriesSwiper, productSwiper;
+let bannerSwiper, categoriesSwiper;
 let productsFromJSON = []; // Array para almacenar productos del JSON
 
 // Configuración API cargada desde config.js
@@ -455,7 +455,6 @@ function optimizePerformance() {
         resizeTimeout = setTimeout(() => {
             if (bannerSwiper) bannerSwiper.update();
             if (categoriesSwiper) categoriesSwiper.update();
-            if (productSwiper) productSwiper.update();
         }, 250);
     });
     
