@@ -2,7 +2,7 @@
 
 // Mapeo de departamentos a ciudades principales (puedes expandir según necesites)
 const departmentCities = {
-    'Antioquia': ['Medellín', 'Bello', 'Itagüí', 'Envigado', 'Sabaneta', 'La Estrella', 'Caldas', 'Copacabana'],
+    /* 'Antioquia': ['Medellín', 'Bello', 'Itagüí', 'Envigado', 'Sabaneta', 'La Estrella', 'Caldas', 'Copacabana'],
     'Atlántico': ['Barranquilla', 'Soledad', 'Malambo', 'Galapa', 'Puerto Colombia'],
     'Bogotá D.C.': ['Bogotá'],
     'Bolívar': ['Cartagena', 'Magangué', 'Turbaco', 'Arjona'],
@@ -32,7 +32,8 @@ const departmentCities = {
     'Guaviare': ['San José del Guaviare'],
     'Guainía': ['Inírida'],
     'Vaupés': ['Mitú'],
-    'Vichada': ['Puerto Carreño']
+    'Vichada': ['Puerto Carreño'], */
+    'Risaralda': ['Santa Rosa de Cabal']
 };
 
 // Función para abrir el modal de cotización

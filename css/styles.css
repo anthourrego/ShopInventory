@@ -277,55 +277,71 @@ body {
     color: #7AD31C;
 }
 
-/* Footer del carrito - Mejorado con Bootstrap 5 */
-.floating-cart {
-    background: linear-gradient(135deg, #4F4F4D, #7AD31C) !important;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 1030; /* Bootstrap z-index apropiado */
-    border-top-color: #7AD31C !important; /* Color de marca */
-}
-
-.floating-cart:hover {
-    background: linear-gradient(135deg, #7AD31C, #4F4F4D) !important;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.2) !important;
-}
-
-.floating-cart .cart-count {
-    background-color: #7AD31C !important;
-    color: white;
-    min-width: 35px;
-    height: 35px;
-    display: flex !important;
+/* Botón flotante del carrito */
+.floating-cart-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4F4F4D, #7AD31C);
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50% !important;
-}
-
-.floating-cart .cart-text {
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    z-index: 1030;
     color: white;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
-.floating-cart .cart-total {
-    color: #7AD31C;
-    font-size: 1.1rem !important;
+.floating-cart-button:hover {
+    background: linear-gradient(135deg, #7AD31C, #4F4F4D);
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.4);
 }
 
-/* Ajustes responsivos para el footer del carrito */
+.floating-cart-button .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff4757;
+    color: white;
+    border-radius: 50%;
+    min-width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.floating-cart-button .cart-count:empty,
+.floating-cart-button .cart-count[data-count="0"] {
+    display: none;
+}
+
+/* Ajustes responsivos para el botón flotante */
 @media (max-width: 576px) {
-    .floating-cart .cart-text {
-        font-size: 0.9rem;
+    .floating-cart-button {
+        width: 55px;
+        height: 55px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 1.3rem;
     }
     
-    .floating-cart .cart-total {
-        font-size: 1rem !important;
-    }
-    
-    .floating-cart .cart-count {
-        min-width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
+    .floating-cart-button .cart-count {
+        min-width: 22px;
+        height: 22px;
+        font-size: 0.75rem;
+        top: -6px;
+        right: -6px;
     }
 
     .product-modal-content {

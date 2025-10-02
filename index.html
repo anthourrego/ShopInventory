@@ -104,22 +104,11 @@
         </div>
     </section>
 
-    <!-- Footer del carrito -->
-    <footer class="floating-cart fixed-bottom bg-dark text-white shadow-lg border-top border-3 border-primary">
-        <div class="container-fluid">
-            <div class="row justify-content-center align-items-center py-3">
-                <div class="col-auto">
-                    <div class="cart-count badge bg-primary rounded-pill fs-6 fw-bold">0</div>
-                </div>
-                <div class="col-auto text-center">
-                    <span class="cart-text fw-semibold">Ver pedido</span>
-                </div>
-                <div class="col-auto">
-                    <span class="cart-total fw-bold fs-5">$ 0</span>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Botón flotante del carrito -->
+    <div class="floating-cart-button" id="floating-cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
 
     <!-- Modal del carrito -->
     <div class="cart-modal" id="cart-modal">
@@ -244,7 +233,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <select id="department" name="department" required>
                                 <option value="">--</option>
-                                <option value="Antioquia">Antioquia</option>
+                                <!-- <option value="Antioquia">Antioquia</option>
                                 <option value="Atlántico">Atlántico</option>
                                 <option value="Bogotá D.C.">Bogotá D.C.</option>
                                 <option value="Bolívar">Bolívar</option>
@@ -274,7 +263,9 @@
                                 <option value="Tolima">Tolima</option>
                                 <option value="Valle del Cauca">Valle del Cauca</option>
                                 <option value="Vaupés">Vaupés</option>
-                                <option value="Vichada">Vichada</option>
+                                <option value="Vichada">Vichada</option> -->
+                                <option value="Risaralda" selected>Risaralda</option>
+
                             </select>
                         </div>
                     </div>
@@ -286,6 +277,7 @@
                             <i class="fas fa-city"></i>
                             <select id="city" name="city" required>
                                 <option value="">--</option>
+                                 <option value="Santa Rosa de Cabal" selected>Santa Rosa de Cabal</option>
                             </select>
                         </div>
                     </div>

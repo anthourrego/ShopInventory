@@ -141,14 +141,16 @@ function getCartItemCount() {
 // Función para actualizar la UI del carrito
 function updateCartUI() {
     const cartCount = document.querySelector('.cart-count');
-    const cartTotal = document.querySelector('.cart-total');
     const cartModalTotal = document.getElementById('cart-total-amount');
     
     const itemCount = getCartItemCount();
     const total = getCartTotal();
     
-    cartCount.textContent = itemCount;
-    cartTotal.textContent = formatPrice(total);
+    // Actualizar contador y configurar atributo para CSS
+    if (cartCount) {
+        cartCount.textContent = itemCount;
+        cartCount.setAttribute('data-count', itemCount);
+    }
     
     if (cartModalTotal) {
         cartModalTotal.textContent = formatPrice(total);
@@ -171,18 +173,11 @@ function updateCartUI() {
         }
     }
     
-    // El carrito flotante siempre está visible como footer
-    const floatingCart = document.querySelector('.floating-cart');
-    if (floatingCart) {
-        // Bootstrap fixed-bottom ya maneja la visibilidad
-        
-        // Cambiar el texto según si hay items o no
-        const cartText = floatingCart.querySelector('.cart-text');
-        if (itemCount > 0) {
-            cartText.textContent = 'Ver pedido';
-        } else {
-            cartText.textContent = 'Carrito vacío - ¡Agrega productos!';
-        }
+    // El botón flotante siempre está visible
+    const floatingCartBtn = document.querySelector('.floating-cart-button');
+    if (floatingCartBtn) {
+        // Siempre mostrar el botón flotante
+        floatingCartBtn.style.display = 'flex';
     }
 }
 
@@ -421,15 +416,13 @@ function clearCart() {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
-    // Carrito flotante - siempre visible
-    const floatingCart = document.querySelector('.floating-cart');
-    if (floatingCart) {
-        floatingCart.addEventListener('click', function() {
-            // Siempre abrir el modal, independientemente del contenido
+    // Botón flotante del carrito
+    const floatingCartBtn = document.querySelector('.floating-cart-button');
+    if (floatingCartBtn) {
+        floatingCartBtn.addEventListener('click', function() {
+            // Abrir el modal del carrito
             showCartModal();
         });
-        
-        // Bootstrap fixed-bottom ya maneja la visibilidad, no necesitamos display manual
     }
     
     // Cerrar carrito
