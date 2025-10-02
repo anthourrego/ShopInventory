@@ -269,9 +269,25 @@ function initializeEventListeners() {
     // Búsqueda
     const searchInput = document.querySelector('.search-input');
     const searchBtn = document.querySelector('.search-btn');
+    const searchContainer = document.querySelector('.search-container');
     
     if (searchBtn) {
-        searchBtn.addEventListener('click', performSearch);
+        searchBtn.addEventListener('click', function(e) {
+            // Verificar si estamos en dispositivo móvil
+            if (window.innerWidth <= 768) {
+                // Si el buscador no está expandido, expandirlo
+                if (!searchContainer.classList.contains('expanded')) {
+                    e.preventDefault();
+                    searchContainer.classList.add('expanded');
+                    setTimeout(() => {
+                        searchInput.focus();
+                    }, 300);
+                    return;
+                }
+            }
+            // Si está expandido o estamos en desktop, realizar búsqueda
+            performSearch();
+        });
     }
     
     if (searchInput) {
@@ -280,7 +296,25 @@ function initializeEventListeners() {
                 performSearch();
             }
         });
+        
+        // Cerrar el buscador móvil cuando se pierde el foco
+        searchInput.addEventListener('blur', function() {
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    if (!searchInput.value.trim()) {
+                        searchContainer.classList.remove('expanded');
+                    }
+                }, 150);
+            }
+        });
     }
+    
+    // Manejar redimensionamiento de ventana
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            searchContainer.classList.remove('expanded');
+        }
+    });
 }
 
 // Función para realizar búsqueda

@@ -822,13 +822,80 @@ body {
     
     .search-container {
         min-width: auto;
+        width: auto;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    /* Estado inicial en móviles - solo botón visible */
+    .search-container .search-input {
+        width: 0;
+        padding: 12px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .search-container .search-btn {
+        border-radius: 25px;
+        min-width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Estado expandido en móviles */
+    .search-container.expanded {
         width: 100%;
+        max-width: 280px;
+    }
+    
+    .search-container.expanded .search-input {
+        width: calc(100% - 45px);
+        padding: 12px 15px;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .search-container.expanded .search-btn {
+        border-radius: 0 25px 25px 0;
     }
     
     .main-banner {
         margin: 15px 0;
         padding: 0 10px;
     }
+}
+
+/* Media query específica para tablets */
+@media (max-width: 768px) and (min-width: 577px) {
+    .search-container.expanded {
+        max-width: 350px;
+    }
+}
+
+/* Asegurar comportamiento normal en desktop */
+@media (min-width: 769px) {
+    .search-container {
+        width: 100%;
+        min-width: 300px;
+    }
+    
+    .search-container .search-input {
+        width: auto !important;
+        padding: 12px 20px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .search-container .search-btn {
+        border-radius: 0 !important;
+        min-width: auto !important;
+        height: auto !important;
+        padding: 12px 15px !important;
+    }
+}
     
     .banner-swiper img {
         height: 200px;
