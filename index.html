@@ -134,42 +134,60 @@
         </div>
     </div>
 
-    <!-- Modal de detalle del producto -->
-    <div class="product-modal" id="product-modal">
-        <div class="product-modal-content">
-            <button class="close-modal">&times;</button>
-            <div class="product-modal-body">
-                <div class="product-image-modal">
-                    <img id="product-modal-image" src="" alt="" class="product-main-image-modal">
+    <!-- Modal de detalle del producto - Bootstrap 5 -->
+    <div class="modal fade" id="product-modal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="product-info p-3">
-                    <h3 id="modal-product-name"></h3>
-                    <p class="product-price"><span id="modal-product-price"></span></p>
-                    <div class="product-stock" id="modal-product-stock">
-                        <!-- Información de stock -->
-                    </div>
-                    <div class="product-description">
-                        <p id="modal-product-description"></p>
-                    </div>
-                    <div class="product-options">
-                        <div class="options-row">
-                            <div class="quantity-selector">
-                                <label>Cantidad:</label>
-                                <div class="quantity-controls">
-                                    <button class="qty-btn" id="qty-minus">-</button>
-                                    <input type="number" id="quantity" value="1" min="1">
-                                    <button class="qty-btn" id="qty-plus">+</button>
-                                </div>
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <!-- Imagen del producto -->
+                        <div class="col-lg-6">
+                            <div class="product-image-modal h-100">
+                                <img id="product-modal-image" src="" alt="" class="img-fluid mw-100 mh-100 object-fit-cover">
                             </div>
-                            <div class="availability-selector">
-                                <label>Disponibilidad:</label>
-                                <div class="availability-info" id="modal-availability-info">
-                                    <!-- Información de disponibilidad -->
+                        </div>
+                        <!-- Información del producto -->
+                        <div class="col-lg-6">
+                            <div class="p-4">
+                                <h3 id="modal-product-name" class="fw-bold mb-3"></h3>
+                                <p class="product-price mb-3">
+                                    <span id="modal-product-price" class="fs-4 fw-bold text-success"></span>
+                                </p>
+                                <div class="product-description">
+                                    <p id="modal-product-description" class="text-muted mb-0"></p>
                                 </div>
+                                <div class="product-options mb-4">
+                                    <div class="row g-3">
+                                        <div class="col-7">
+                                            <label class="form-label fw-semibold">Cantidad:</label>
+                                            <div class="input-group quantity-controls">
+                                                <button class="btn btn-outline-secondary qty-btn" type="button" id="qty-minus">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <input type="number" class="form-control text-center" id="quantity" value="1" min="1">
+                                                <button class="btn btn-outline-secondary qty-btn" type="button" id="qty-plus">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <label class="form-label fw-semibold">Disponibilidad:</label>
+                                            <div class="availability-info rounded p-2 text-center" id="modal-availability-info">
+                                                <!-- Información de disponibilidad -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success w-100 py-3 fw-bold rounded-pill" id="add-to-cart-modal">
+                                    <i class="fas fa-shopping-cart me-2"></i>
+                                    Agregar al carrito
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" id="add-to-cart-modal">Agregar al carrito</button>
                 </div>
             </div>
         </div>
@@ -192,13 +210,13 @@
                             <div class="country-selector">
                                 <select id="country-code" class="country-code">
                                     <option value="+57" data-flag="🇨🇴">🇨🇴 +57</option>
-                                    <option value="+1" data-flag="🇺🇸">🇺🇸 +1</option>
+                                    <!-- <option value="+1" data-flag="🇺🇸">🇺🇸 +1</option>
                                     <option value="+52" data-flag="🇲🇽">🇲🇽 +52</option>
                                     <option value="+34" data-flag="🇪🇸">🇪🇸 +34</option>
                                     <option value="+593" data-flag="🇪🇨">🇪🇨 +593</option>
                                     <option value="+51" data-flag="🇵🇪">🇵🇪 +51</option>
                                     <option value="+58" data-flag="🇻🇪">🇻🇪 +58</option>
-                                    <option value="+507" data-flag="🇵🇦">🇵🇦 +507</option>
+                                    <option value="+507" data-flag="🇵🇦">🇵🇦 +507</option> -->
                                 </select>
                             </div>
                             <input type="tel" id="whatsapp" name="whatsapp" placeholder="300 123 4567" maxlength="15" required>

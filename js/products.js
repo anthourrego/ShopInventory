@@ -384,9 +384,9 @@ function showLoadingModal(modal, overlay) {
     if (modalPrice) modalPrice.textContent = '$0';
     if (modalDescription) modalDescription.textContent = 'Obteniendo información del producto...';
     
-    modal.classList.add('show');
-    overlay.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    // Usar Bootstrap 5 API
+    const bsModal = new bootstrap.Modal(modal);
+    bsModal.show();
     
     console.log('✅ Modal mostrado con estado de carga');
 }
@@ -539,18 +539,12 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
     // Mostrar modal
     try {
         console.log('🎭 Mostrando modal...');
-        modal.classList.add('show');
-        overlay.classList.add('show');
-        document.body.style.overflow = 'hidden';
         
-        // Verificar que se aplicó la clase
-        setTimeout(() => {
-            if (modal.classList.contains('show')) {
-                console.log('✅ Modal visible correctamente');
-            } else {
-                console.error('❌ Modal no se mostró correctamente');
-            }
-        }, 100);
+        // Usar Bootstrap 5 API
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+        
+        console.log('✅ Modal mostrado con Bootstrap 5');
         
     } catch (error) {
         console.error('❌ Error mostrando modal:', error);
@@ -646,9 +640,9 @@ async function openProductModal(productId) {
     if (modalPrice) modalPrice.textContent = '$0';
     if (modalDescription) modalDescription.textContent = 'Obteniendo información del producto...';
     
-    modal.classList.add('show');
-    overlay.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    // Usar Bootstrap 5 API
+    const bsModal = new bootstrap.Modal(modal);
+    bsModal.show();
     
     console.log('✅ Modal mostrado con estado de carga');
     
@@ -823,20 +817,18 @@ function closeProductModal() {
     
     try {
         const modal = document.getElementById('product-modal');
-        const overlay = document.getElementById('overlay');
         
         if (modal) {
-            modal.classList.remove('show');
-            console.log('✅ Modal ocultado');
+            // Usar Bootstrap 5 API
+            const bsModal = bootstrap.Modal.getInstance(modal);
+            if (bsModal) {
+                bsModal.hide();
+            } else {
+                const newBsModal = new bootstrap.Modal(modal);
+                newBsModal.hide();
+            }
+            console.log('✅ Modal ocultado con Bootstrap 5');
         }
-        
-        if (overlay) {
-            overlay.classList.remove('show');
-            console.log('✅ Overlay ocultado');
-        }
-        
-        document.body.style.overflow = 'auto';
-        console.log('✅ Scroll restaurado');
         
     } catch (error) {
         console.error('❌ Error cerrando modal:', error);
