@@ -409,7 +409,6 @@ body {
         flex-grow: 1; /* Permite que la descripción ocupe el espacio vertical disponible */
         overflow-y: auto; /* Agrega la barra de scroll SOLO cuando es necesario */
         padding-right: 10px; /* Espacio para que la barra de scroll no tape el texto */
-        white-space: pre-line; /* Respeta saltos de línea \n y \r */
     }
 
     .product-options {
@@ -761,7 +760,7 @@ body {
 }
 
 #product-modal .product-image-modal {
-    height: 400px;
+    /* height: 400px; */
     background: #f8f9fa;
     border-radius: 15px 0 0 15px;
     overflow: hidden;
@@ -852,6 +851,9 @@ body {
 .product-description {
     line-height: 1.6;
     color: #666;
+}
+
+.product-description p {
     white-space: pre-line; /* Respeta saltos de línea \n y \r */
 }
 
