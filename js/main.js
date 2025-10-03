@@ -26,9 +26,25 @@ const categoryConfig = {
 // Función para renderizar las categorías obtenidas desde el endpoint
 function renderCategories(categories) {
     const categoriesWrapper = document.querySelector('.categories-swiper .swiper-wrapper');
+    const categoriesContainer = document.getElementById('categories-container');
+    
     if (!categoriesWrapper) {
         console.error('❌ Contenedor de categorías no encontrado.');
         return;
+    }
+
+    // Si no hay categorías o solo hay una categoría, ocultar el panel completo de categorías
+    if (!categories || categories.length <= 1) {
+        console.log(`📋 ${categories.length === 0 ? 'No hay categorías' : 'Solo hay una categoría'} disponible, ocultando panel de categorías`);
+        if (categoriesContainer) {
+            categoriesContainer.style.display = 'none';
+        }
+        return;
+    } else {
+        // Si hay más de una categoría, mostrar el panel
+        if (categoriesContainer) {
+            categoriesContainer.style.display = 'block';
+        }
     }
 
     // Limpia las categorías existentes (excepto "Todos") antes de agregar las nuevas
@@ -97,9 +113,10 @@ async function fetchAndRenderCategories() {
 
     } catch (error) {
         console.error('❌ Error al cargar las categorías:', error);
-        const categoriesWrapper = document.querySelector('.categories-swiper .swiper-wrapper');
-        if (categoriesWrapper) {
-             console.error('No se pudieron cargar las categorías. El contenedor de categorías podría estar vacío.');
+        const categoriesContainer = document.getElementById('categories-container');
+        if (categoriesContainer) {
+            console.log('🙈 Ocultando panel de categorías debido a error en la carga');
+            categoriesContainer.style.display = 'none';
         }
     }
 }

@@ -214,8 +214,8 @@ function renderProducts(productsToRender) {
         return `
         <div class="col-xl-3 col-lg-4 col-md-6 col-6">
             <div class="product-card ${isOutOfStock ? 'out-of-stock' : ''}" data-product-id="${product.id}" ${isOutOfStock ? '' : `onclick="openProductModalWithCache(${product.id}); console.log('Card clicked for product: ${product.id}');"`}>
-                <div class="product-images">
-                    <img src="${product.FotoURLSmall || (product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg')}" alt="${product.name}" class="product-main-image" 
+                <div class="product-images align-content-center">
+                    <img src="${product.FotoURLSmall || (product.images && product.images.length > 0 ? product.images[0] : 'assets/placeholder.svg')}" alt="${product.name}" class="product-main-image mw-100 mh-100" 
                          onerror="this.src='assets/placeholder.svg'">
                     ${product.images && product.images.length > 1 ? `
                         <img src="${product.images[1]}" alt="${product.name}" class="product-secondary-image"
