@@ -48,6 +48,10 @@ body {
 /* Header */
 .header {
     background: linear-gradient(135deg, #4F4F4D, #7AD31C);
+    background: url('../assets/navbar/banner1-1.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     padding: 15px 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -105,7 +109,7 @@ body {
 }
 
 .search-btn {
-    background: #4F4F4D;
+    background: #7AD31C;
     color: white;
     border: none;
     padding: 12px 15px;
@@ -114,7 +118,7 @@ body {
 }
 
 .search-btn:hover {
-    background: #3a3a38;
+    background: #4F4F4D;
 }
 
 /* Banner Principal */
@@ -998,13 +1002,13 @@ body {
     
     .search-container {
         min-width: auto;
-        width: auto;
+        /* width: auto;
         position: relative;
-        transition: all 0.3s ease;
+        transition: all 0.3s ease; */
     }
     
     /* Estado inicial en móviles - solo botón visible */
-    .search-container .search-input {
+    /* .search-container .search-input {
         width: 0;
         padding: 12px 0;
         opacity: 0;
@@ -1019,10 +1023,10 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-    }
+    } */
     
     /* Estado expandido en móviles */
-    .search-container.expanded {
+    /* .search-container.expanded {
         width: 100%;
         max-width: 280px;
     }
@@ -1036,25 +1040,27 @@ body {
     
     .search-container.expanded .search-btn {
         border-radius: 0 25px 25px 0;
-    }
+    } */
     
     .main-banner {
         margin: 15px 0;
         padding: 0 10px;
     }
+
+    
 }
 
 /* Media query específica para tablets */
-@media (max-width: 768px) and (min-width: 577px) {
+/* @media (max-width: 768px) and (min-width: 577px) {
     .search-container.expanded {
         max-width: 350px;
     }
-}
+} */
 
 /* Asegurar comportamiento normal en desktop */
 @media (min-width: 769px) {
-    .search-container {
-        /* width: 100%; */
+    /* .search-container {
+        //width: 100%;
         min-width: 300px;
     }
     
@@ -1070,47 +1076,8 @@ body {
         min-width: auto !important;
         height: auto !important;
         padding: 12px 15px !important;
-    }
+    } */
     
-    .banner-swiper img {
-        height: 200px;
-    }
-    
-    /* Grid de productos manejado por Bootstrap 5 */
-    .product-images {
-        height: 300px;
-    }
-    
-    .options-row {
-        flex-direction: row;
-        gap: 15px;
-        align-items: flex-start;
-    }
-    
-    .quantity-selector {
-        flex: 0 0 60%;
-        margin-bottom: 15px;
-    }
-    
-    .availability-selector {
-        flex: 0 0 35%;
-        margin-bottom: 15px;
-    }
-    
-    .category-item {
-        min-width: 100px;
-        padding: 10px;
-    }
-    
-    .category-icon {
-        width: 80px;
-        height: 80px;
-        font-size: 16px;
-    }
-    
-    .category-item span {
-        font-size: 11px;
-    }
 }
 
 @media (max-width: 480px) {
