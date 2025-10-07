@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('🚀 Iniciando carga de productos desde endpoints...');
     await loadInitialProducts();
     
-    initializeSearch();
+    // initializeSearch(); // Comentado - causaba búsqueda automática al escribir
     
     // Test function - esto se puede quitar después
     window.testModal = function() {
@@ -283,48 +283,34 @@ function initializeEventListeners() {
         });
     }
 
-    // Búsqueda
+    // Búsqueda mejorada - Solo con Enter
     const searchInput = document.querySelector('.search-input');
-    const searchBtn = document.querySelector('.search-btn');
-    /* const searchContainer = document.querySelector('.search-container'); */
-    
-    if (searchBtn) {
-        searchBtn.addEventListener('click', performSearch);
-        /* searchBtn.addEventListener('click', function(e) {
-            // Verificar si estamos en dispositivo móvil
-            if (window.innerWidth <= 768) {
-                // Si el buscador no está expandido, expandirlo
-                if (!searchContainer.classList.contains('expanded')) {
-                    e.preventDefault();
-                    searchContainer.classList.add('expanded');
-                    setTimeout(() => {
-                        searchInput.focus();
-                    }, 300);
-                    return;
-                }
-            }
-            // Si está expandido o estamos en desktop, realizar búsqueda
-            performSearch();
-        }); */
-    }
     
     if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
+        // Event listener para la tecla Enter
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                e.preventDefault(); // Prevenir submit del formulario
                 performSearch();
             }
         });
         
-        // Cerrar el buscador móvil cuando se pierde el foco
-        /* searchInput.addEventListener('blur', function() {
-            if (window.innerWidth <= 768) {
-                setTimeout(() => {
-                    if (!searchInput.value.trim()) {
-                        searchContainer.classList.remove('expanded');
-                    }
-                }, 150);
+        // Event listener adicional para compatibilidad
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                e.preventDefault();
+                performSearch();
             }
-        }); */
+        });
+    }
+    
+    // Funcionalidad del logo - regresar al inicio
+    const logo = document.getElementById('logo-home');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            console.log('🏠 Logo clickeado - Regresando al inicio');
+            goToHome();
+        });
     }
     
     // Manejar redimensionamiento de ventana
@@ -335,29 +321,88 @@ function initializeEventListeners() {
     }); */
 }
 
-// Función para realizar búsqueda
+// Función para regresar al inicio
+async function goToHome() {
+    try {
+        console.log('🏠 Iniciando regreso al inicio...');
+        
+        // Limpiar el input de búsqueda
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) {
+            searchInput.value = '';
+        }
+        
+        // Restaurar título
+        const sectionTitle = document.querySelector('.section-title h2');
+        if (sectionTitle) {
+            sectionTitle.textContent = 'Todos los productos';
+        }
+        
+        // Remover active de todas las categorías y activar "Todos"
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        const allCategory = document.querySelector('.category-item[data-category="all"]');
+        if (allCategory) {
+            allCategory.classList.add('active');
+        }
+        
+        // Cargar todos los productos
+        await loadInitialProducts();
+        
+        console.log('✅ Regreso al inicio completado');
+        
+    } catch (error) {
+        console.error('❌ Error al regresar al inicio:', error);
+    }
+}
+
+// Función para realizar búsqueda mejorada
 async function performSearch() {
     const searchInput = document.querySelector('.search-input');
+    if (!searchInput) {
+        console.error('❌ Input de búsqueda no encontrado');
+        return;
+    }
+    
     const query = searchInput.value.trim();
     const sectionTitle = document.querySelector('.section-title h2');
     
+    console.log(`🔍 Realizando búsqueda: "${query}"`);
+    
+    // Si no hay query, cargar todos los productos
     if (query.length === 0) {
         await loadInitialProducts();
-        // Restaurar título original
-        sectionTitle.textContent = 'Todos los productos';
+        if (sectionTitle) {
+            sectionTitle.textContent = 'Todos los productos';
+        }
+        return;
+    }
+    
+    // Validar longitud mínima de búsqueda
+    if (query.length < 2) {
+        console.log('⚠️ Query muy corto, mínimo 2 caracteres');
         return;
     }
     
     // Mostrar estado de carga
-    sectionTitle.textContent = `Buscando: "${query}"...`;
+    if (sectionTitle) {
+        sectionTitle.textContent = `Buscando: "${query}"...`;
+    }
+    
     const grid = document.getElementById('products-grid');
     if (grid) {
         grid.innerHTML = `
-            <div class="no-products-found">
-                <div class="no-products-content">
-                    <i class="fas fa-spinner fa-spin" style="font-size: 4rem; color: #7AD31C; margin-bottom: 1rem;"></i>
-                    <h3 style="color: #4F4F4D; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600;">Buscando productos...</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem; font-family: 'Inter', sans-serif;">Consultando "${query}" en el sistema</p>
+            <div class="col-12">
+                <div class="no-products-found">
+                    <div class="no-products-content text-center py-5">
+                        <div class="spinner-border text-success mb-3" role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
+                        <h3 style="color: #4F4F4D; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 600;">Buscando productos...</h3>
+                        <p style="color: #666; margin-bottom: 0; font-family: 'Inter', sans-serif;">Consultando "${query}" en el sistema</p>
+                    </div>
                 </div>
             </div>
         `;
@@ -365,19 +410,47 @@ async function performSearch() {
     
     try {
         const results = await searchProducts(query);
-        renderProducts(results);
         
-        // Actualizar título
-        sectionTitle.textContent = `Resultados para: "${query}" (${results.length} encontrados)`;
+        if (results && Array.isArray(results)) {
+            renderProducts(results);
+            
+            // Actualizar título
+            if (sectionTitle) {
+                sectionTitle.textContent = `Resultados para: "${query}" (${results.length} encontrados)`;
+            }
+            
+            console.log(`✅ Búsqueda completada: ${results.length} productos encontrados`);
+        } else {
+            throw new Error('Respuesta inválida del servidor');
+        }
         
         // Remover active de categorías
         document.querySelectorAll('.category-item').forEach(item => {
             item.classList.remove('active');
         });
+        
     } catch (error) {
         console.error('❌ Error en búsqueda:', error);
-        sectionTitle.textContent = `Error buscando: "${query}"`;
+        if (sectionTitle) {
+            sectionTitle.textContent = `Error buscando: "${query}"`;
+        }
         renderProducts([]);
+        
+        // Mostrar mensaje de error
+        if (grid) {
+            grid.innerHTML = `
+                <div class="col-12">
+                    <div class="no-products-found">
+                        <div class="no-products-content text-center py-5">
+                            <i class="bi bi-exclamation-triangle" style="font-size: 4rem; color: #dc3545; margin-bottom: 1rem;"></i>
+                            <h3 style="color: #4F4F4D; margin-bottom: 0.5rem;">Error en la búsqueda</h3>
+                            <p style="color: #666; margin-bottom: 1rem;">No se pudo realizar la búsqueda. Intenta de nuevo.</p>
+                            <button class="btn btn-success" onclick="loadInitialProducts()">Cargar todos los productos</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
     }
 }
 
