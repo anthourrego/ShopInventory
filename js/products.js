@@ -209,7 +209,9 @@ function renderProducts(productsToRender) {
     grid.innerHTML = productsToRender.map(product => {
         const stock = parseInt(product.stock) || 0;
         const isOutOfStock = stock <= 0;
-        const isLowStock = stock > 0 && stock <= 15;
+        const isOneLowStock = stock === 1;
+        const isLowStock = stock > 1 && stock <= 15;
+        const isInStock = stock > 15;
         
         return `
         <div class="col-xl-3 col-lg-4 col-md-6 col-6">
@@ -230,6 +232,8 @@ function renderProducts(productsToRender) {
                         <div class="stock-info">
                             ${isOutOfStock ? '<span class="stock-status out-of-stock">Sin stock</span>' : 
                               isLowStock ? `<span class="stock-status low-stock">${stock} disponibles</span>` : 
+                              isOneLowStock ? `<span class="stock-status one-low-stock low-stock">¡Última unidad!</span>` : 
+                              isInStock ? `<span class="stock-status in-stock">Disponible</span>` : 
                               ''}
                         </div>
                     </div>
@@ -425,6 +429,9 @@ function populateProductModal(castedProduct, castedProductId, modal, overlay) {
             if (productStock <= 0) {
                 availabilityInfo.textContent = 'Agotado';
                 availabilityInfo.className = 'availability-info out-of-stock';
+            } else if (productStock <= 1) {
+                availabilityInfo.innerHTML = '¡Última unidad!';
+                availabilityInfo.className = 'availability-info one-low-stock';
             } else if (productStock <= 15) {
                 availabilityInfo.textContent = `${productStock} disponibles`;
                 availabilityInfo.className = 'availability-info low-stock';
@@ -678,6 +685,9 @@ async function openProductModal(productId) {
             if (productStock <= 0) {
                 availabilityInfo.textContent = 'Agotado';
                 availabilityInfo.className = 'availability-info out-of-stock';
+            } else if (productStock === 1) {
+                availabilityInfo.innerHTML = '¡Última unidad!';
+                availabilityInfo.className = 'availability-info one-low-stock';
             } else if (productStock <= 15) {
                 availabilityInfo.textContent = `${productStock} disponibles`;
                 availabilityInfo.className = 'availability-info low-stock';

@@ -295,6 +295,16 @@ body {
     font-weight: 600;
     color: #333;
     margin-bottom: 8px;
+    
+    /* Forzar siempre 2 líneas de texto */
+    height: 2.6em; /* Altura fija para 2 líneas (1.3em por línea) */
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; /* Propiedad estándar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-price {
@@ -840,6 +850,12 @@ body {
     border-color: #ffeaa7;
 }
 
+#product-modal .availability-info.one-low-stock {
+    background-color: #fff3cd;
+    color: #856404;
+    border-color: #ffeaa7;
+}
+
 #product-modal .availability-info.out-of-stock {
     background-color: #f8d7da;
     color: #721c24;
@@ -927,6 +943,12 @@ body {
 }
 
 .availability-info.low-stock {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.availability-info.one-low-stock {
     background-color: #fff3cd;
     color: #856404;
     border: 1px solid #ffeaa7;
@@ -1034,7 +1056,7 @@ body {
     }
     
     .search-input-wrapper {
-        max-width: 280px;
+        /* max-width: 280px; */
         margin: 0 auto;
     }
     
@@ -1059,7 +1081,7 @@ body {
 /* Media query específica para tablets */
 @media (max-width: 768px) and (min-width: 577px) {
     .search-input-wrapper {
-        max-width: 350px;
+        max-width: 90%;
     }
 }
 
@@ -1209,6 +1231,11 @@ body {
 }
 
 .stock-status.low-stock {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.stock-status.one-low-stock {
     background-color: #fff3cd;
     color: #856404;
 }
@@ -1733,6 +1760,7 @@ textarea {
         font-size: 0.9rem;
         line-height: 1.2;
         margin-bottom: 2px !important; /* Margen muy reducido entre nombre y precio */
+        height: 2.4em; /* Altura ajustada para 2 líneas con line-height 1.2 */
     }
     
     .product-price {
@@ -1764,6 +1792,8 @@ textarea {
     .product-name {
         font-size: 0.85rem;
         margin-bottom: 1px !important; /* Margen mínimo */
+        height: 2.4em; /* Altura ajustada para 2 líneas */
+        line-height: 1.2; /* Line-height explícito para consistencia */
     }
     
     .product-price {
