@@ -31,7 +31,7 @@ const API_CONFIG = {
 // Configuración de WhatsApp para cotizaciones
 const WHATSAPP_CONFIG = {
     // Número de WhatsApp comercial (incluir código de país sin +)
-    BUSINESS_NUMBER: '573103587032', // CAMBIAR POR TU NÚMERO REAL
+    BUSINESS_NUMBER: '+573188732564', // CAMBIAR POR TU NÚMERO REAL
     
     // Mensaje de bienvenida personalizado
     WELCOME_MESSAGE: '¡Hola! Te saluda el equipo de nuestra tienda 🛍️',

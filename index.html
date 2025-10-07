@@ -22,6 +22,7 @@
     <meta name="msapplication-TileImage" content="assets/icon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -37,7 +38,7 @@
                 <div class="search-container">
                     <input type="text" placeholder="Buscar productos..." class="search-input">
                     <button class="search-btn">
-                        <i class="fas fa-search"></i>
+                        <i class="bi bi-search"></i>
                     </button>
                 </div>
             </div>
@@ -102,8 +103,8 @@
     </section>
 
     <!-- Botón flotante del carrito -->
-    <div class="floating-cart-button" id="floating-cart-btn">
-        <i class="fas fa-shopping-cart"></i>
+    <div class="floating-cart-button shadow-sm" id="floating-cart-btn">
+        <i class="bi bi-cart3"></i>
         <span class="cart-count">0</span>
     </div>
 
@@ -162,11 +163,11 @@
                                             <label class="form-label fw-semibold">Cantidad:</label>
                                             <div class="input-group quantity-controls">
                                                 <button class="btn btn-outline-secondary qty-btn" type="button" id="qty-minus">
-                                                    <i class="fas fa-minus"></i>
+                                                    <i class="bi bi-dash"></i>
                                                 </button>
                                                 <input type="number" class="form-control text-center" id="quantity" value="1" min="1">
                                                 <button class="btn btn-outline-secondary qty-btn" type="button" id="qty-plus">
-                                                    <i class="fas fa-plus"></i>
+                                                    <i class="bi bi-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -179,7 +180,7 @@
                                     </div>
                                 </div>
                                 <button class="btn btn-success w-100 py-3 fw-bold rounded-pill" id="add-to-cart-modal">
-                                    <i class="fas fa-shopping-cart me-2"></i>
+                                    <i class="bi bi-cart-plus me-2"></i>
                                     Agregar al carrito
                                 </button>
                             </div>
@@ -227,7 +228,7 @@
                     <div class="form-group">
                         <label for="email">Email<span class="required">*</span></label>
                         <div class="input-with-icon">
-                            <i class="fas fa-envelope"></i>
+                            <i class="bi bi-envelope"></i>
                             <input type="email" id="email" name="email" placeholder="Escriba su email" required>
                         </div>
                     </div>
@@ -236,7 +237,7 @@
                     <div class="form-group">
                         <label for="fullname">Nombres y Apellidos<span class="required">*</span></label>
                         <div class="input-with-icon">
-                            <i class="fas fa-user"></i>
+                            <i class="bi bi-person"></i>
                             <input type="text" id="fullname" name="fullname" placeholder="Escriba su nombre completo" required>
                         </div>
                     </div>
@@ -245,7 +246,7 @@
                     <div class="form-group">
                         <label for="department">Departamento<span class="required">*</span></label>
                         <div class="input-with-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="bi bi-geo-alt"></i>
                             <select id="department" name="department" required>
                                 <option value="">--</option>
                                 <!-- <option value="Antioquia">Antioquia</option>
@@ -289,7 +290,7 @@
                     <div class="form-group">
                         <label for="city">Ciudad<span class="required">*</span></label>
                         <div class="input-with-icon">
-                            <i class="fas fa-city"></i>
+                            <i class="bi bi-building"></i>
                             <select id="city" name="city" required>
                                 <option value="">--</option>
                                  <option value="Santa Rosa de Cabal" selected>Santa Rosa de Cabal</option>
@@ -301,7 +302,7 @@
                     <div class="form-group">
                         <label for="neighborhood">Urb. o Barrio<span class="required">*</span></label>
                         <div class="input-with-icon">
-                            <i class="fas fa-home"></i>
+                            <i class="bi bi-house"></i>
                             <input type="text" id="neighborhood" name="neighborhood" placeholder="Escriba la Urb. o Barrio" required>
                         </div>
                     </div>
@@ -310,7 +311,7 @@
                     <div class="form-group">
                         <label for="address">Dirección de envío<span class="required">*</span></label>
                         <div class="input-with-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="bi bi-geo-alt"></i>
                             <textarea id="address" name="address" placeholder="Escriba la dirección de envío" rows="3" required></textarea>
                         </div>
                     </div>
@@ -319,7 +320,7 @@
                     <div class="form-group">
                         <label for="payment-method">Forma de pago<span class="required">*</span></label>
                         <div class="input-with-icon">
-                            <i class="fas fa-money-bill-wave"></i>
+                            <i class="bi bi-credit-card"></i>
                             <select id="payment-method" name="payment-method" required>
                                 <option value="">--</option>
                                 <option value="Efectivo">Efectivo</option>
