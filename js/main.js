@@ -284,7 +284,7 @@ function initializeEventListeners() {
     }
 
     // Búsqueda mejorada - Solo con Enter
-    const searchInput = document.querySelector('.search-input');
+    const searchInput = document.querySelector('#search-input');
     
     if (searchInput) {
         // Event listener para la tecla Enter
@@ -300,6 +300,16 @@ function initializeEventListeners() {
             if (e.key === 'Enter' || e.keyCode === 13) {
                 e.preventDefault();
                 performSearch();
+            }
+        });
+        
+        // Event listener para detectar cuando se borra todo el contenido
+        searchInput.addEventListener('input', function(e) {
+            const currentValue = e.target.value.trim();
+            // Si el campo está vacío, reiniciar la búsqueda
+            if (currentValue === '') {
+                console.log('🔄 Campo de búsqueda vacío - Reiniciando búsqueda');
+                performSearch(); // Esto cargará todos los productos
             }
         });
     }
@@ -327,7 +337,7 @@ async function goToHome() {
         console.log('🏠 Iniciando regreso al inicio...');
         
         // Limpiar el input de búsqueda
-        const searchInput = document.querySelector('.search-input');
+        const searchInput = document.querySelector('#search-input');
         if (searchInput) {
             searchInput.value = '';
         }
@@ -360,7 +370,7 @@ async function goToHome() {
 
 // Función para realizar búsqueda mejorada
 async function performSearch() {
-    const searchInput = document.querySelector('.search-input');
+    const searchInput = document.querySelector('#search-input');
     if (!searchInput) {
         console.error('❌ Input de búsqueda no encontrado');
         return;
@@ -456,7 +466,7 @@ async function performSearch() {
 
 // Función para inicializar búsqueda en tiempo real
 function initializeSearch() {
-    const searchInput = document.querySelector('.search-input');
+    const searchInput = document.querySelector('#search-input');
     let searchTimeout;
     
     searchInput.addEventListener('input', function() {
