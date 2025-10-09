@@ -37,13 +37,13 @@ function renderCategories(categories) {
     if (!categories || categories.length <= 1) {
         console.log(`📋 ${categories.length === 0 ? 'No hay categorías' : 'Solo hay una categoría'} disponible, ocultando panel de categorías`);
         if (categoriesContainer) {
-            categoriesContainer.style.display = 'none';
+            categoriesContainer.classList.add('d-none');
         }
         return;
     } else {
         // Si hay más de una categoría, mostrar el panel
         if (categoriesContainer) {
-            categoriesContainer.style.display = 'block';
+            categoriesContainer.classList.remove('d-none');
         }
     }
 
@@ -116,7 +116,7 @@ async function fetchAndRenderCategories() {
         const categoriesContainer = document.getElementById('categories-container');
         if (categoriesContainer) {
             console.log('🙈 Ocultando panel de categorías debido a error en la carga');
-            categoriesContainer.style.display = 'none';
+            categoriesContainer.classList.add('d-none');
         }
     }
 }
